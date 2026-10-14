@@ -98,145 +98,158 @@
                     <!-- GIG -->
                     <div class="row headers">
                         <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#gig" aria-expanded="true" aria-controls="gig">
-                            <span class="pl-3 pr-3 company">GIG (gigrewards.ph)</span>/
+                            <span class="pl-3 pr-3 company">GIG</span>/
                             <span class="pl-3 pr-3 position">Technical Lead, Founding Team</span>/
-                            <span class="pl-3 pr-3 stay-duration">August 2024 - Present</span>
+                            <span class="pl-3 pr-3 stay-duration">August 2024 – Present</span>
                         </button>
                     </div>
                     <div class="row mb-1">
                         <div class="col-10 ml-2">
-                            <p class="company-description">
-                                GIG started life as a project inside Sovrun (formerly BreederDAO) and grew up into its own team and brand, GIGRewards, in March 2025.
-                                It's a rewards app: earn points, trade them for mobile data and load, with GCash and Maya payouts for some users.
-                            </p>
+                            <p class="role-meta"><span class="dur" data-start="2024-08" data-end="">2 yrs 3 mo</span> · Started as a Sovrun project · <a href="https://gigrewards.ph/" target="_blank" rel="noopener">gigrewards.ph</a></p>
+                            <p class="company-description">GIG started as a project inside Sovrun (formerly BreederDAO) and grew into its own dedicated team and brand, GIGRewards, in March 2025. I was part of the founding team throughout.</p>
                             <div class="collapse show" id="gig">
                                 <ul class="company-points">
-                                    <li>Built the whole thing from scratch with the founding team: a React Native app, a Next.js admin dashboard and a Node.js API.</li>
-                                    <li>Own the architecture, scope and estimate the work, review code, mentor the devs and wrangle third-party APIs.</li>
-                                    <li>Built our own ffmpeg video worker on AWS (SQS, ECS Fargate, Terraform) to replace MediaConvert, and taught its autoscaling not to cut off long encodes halfway.</li>
-                                    <li>Built an AI pre-screen that reads transcripts so reviewers don't have to start from zero. I picked Claude Haiku and Qwen on cost and accuracy, and about 88% of its flags matched what the client's QA really rejected.</li>
-                                    <li>Built an AI task analyzer on Amazon Bedrock (Claude) that checks video submissions against a quest's requirements and says how confident it is.</li>
-                                    <li>Made the reviewer page about 3x faster (1.4s to 0.4s per submission) and put its memory use on a 60% diet.</li>
-                                    <li>Look after our AWS setup with Terraform, and moved production credentials into Secrets Manager where they belong.</li>
-                                    <li>Got the team working with Claude Code and GitHub Copilot agent mode. I review everything the AI writes.</li>
+                                    <li>Built the platform from the ground up: a rewards app with a React Native mobile app, a Next.js admin dashboard and a Node.js API, covering points, mobile data and load redemptions, and GCash and Maya payouts.</li>
+                                    <li>Own the architecture, scope and estimate work, set quality standards, mentor developers and unblock the team through code review, and integrate third-party APIs.</li>
+                                    <li>Built a self-hosted ffmpeg video worker on AWS (SQS, ECS Fargate, Terraform) to replace MediaConvert, and reworked its autoscaling so workers start on the first job and long encodes are never cut off.</li>
+                                    <li>Built an AI transcript pre-screen for reviewers: analyzed the client’s QA rejections to define the review criteria, compared LLMs on cost and accuracy (chose Claude Haiku and Qwen), and built it with AI coding tools, reviewing and testing the output.</li>
+                                    <li>Built an AI task analyzer on Amazon Bedrock (Claude) that checks video submissions against a quest’s requirements using transcriptions and screenshots, returning a result with a confidence level for first-level validation.</li>
+                                    <li>Made the reviewer page about 3x faster and cut its memory use by 60% through database indexing and media-loading fixes.</li>
+                                    <li>Manage AWS infrastructure with Terraform (S3, RDS, ECS), including moving production credentials into Secrets Manager.</li>
+                                    <li>Drove the team’s shift to AI-assisted development with Claude Code and GitHub Copilot agent mode, shipping features built with AI coding agents.</li>
                                 </ul>
+                                <div class="kpis"><div class="kpi"><strong>3x</strong><span>faster reviewer page, 1.4s to 0.4s per submission</span></div><div class="kpi"><strong>60%</strong><span>less memory use on that page</span></div><div class="kpi"><strong>88%</strong><span>of AI pre-screen flags matched the client’s QA rejections</span></div></div>
                             </div>
                         </div>
                     </div>
-                    <!-- Lista -->
+                    <!-- Lista Bookkeeping App Inc. -->
                     <div class="row headers">
                         <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#lista" aria-expanded="false" aria-controls="lista">
                             <span class="pl-3 pr-3 company">Lista Bookkeeping App Inc.</span>/
                             <span class="pl-3 pr-3 position">Front End Technical Lead</span>/
-                            <span class="pl-3 pr-3 stay-duration">June 2022 - August 2024</span>
+                            <span class="pl-3 pr-3 stay-duration">June 2022 – August 2024</span>
                         </button>
                     </div>
                     <div class="row mb-1">
                         <div class="col-10 ml-2">
-                            <p class="company-description">
-                                Led and mentored the crew building the React Native (Expo) apps, now on the App Store and Google Play, plus the Next.js web app on a NestJS back end.
-                            </p>
+                            <p class="role-meta"><span class="dur" data-start="2022-06" data-end="2024-08">2 yrs 3 mo</span> · <a href="https://www.lista.com.ph/" target="_blank" rel="noopener">lista.com.ph</a></p>
+                            <p class="company-description">Led and mentored the team building the React Native (Expo managed) mobile apps, live on the App Store and Google Play, and the Next.js web app on a NestJS back end.</p>
                             <div class="collapse" id="lista">
                                 <ul class="company-points">
-                                    <li>Rewrote the legacy React Native app into something faster and easier to live with.</li>
-                                    <li>Kept the code tidy with code reviews, agreed standards and automated checks (ESLint, Jest).</li>
-                                    <li>Turned product requirements and UI/UX into tasks with honest estimates.</li>
-                                    <li>Coached the team building prompts and integrations for the OpenAI-powered AI assistant.</li>
-                                    <li>Plugged in a bunch of third-party REST APIs.</li>
+                                    <li>Spearheaded the rewrite of the legacy React Native app into a more scalable, performant codebase, and led front end work on new features.</li>
+                                    <li>Kept the team unblocked with technical direction so they could stay focused on delivery.</li>
+                                    <li>Raised code quality through regular code reviews, enforced standards and automated checks (ESLint, Jest).</li>
+                                    <li>Worked with the product team to turn requirements and UI/UX into engineering tasks with proper estimates.</li>
+                                    <li>Directed the team building prompts and integrations for the OpenAI-powered company AI Assistant.</li>
+                                    <li>Implemented and integrated multiple third-party REST APIs.</li>
                                 </ul>
+                                
                             </div>
                         </div>
                     </div>
-                    <!-- Therma -->
+                    <!-- Therma (CoInspect PH) -->
                     <div class="row headers">
-                        <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#therma" aria-expanded="false" aria-controls="therma">
+                        <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#coinspect" aria-expanded="false" aria-controls="coinspect">
                             <span class="pl-3 pr-3 company">Therma (CoInspect PH)</span>/
                             <span class="pl-3 pr-3 position">Senior Software Engineer</span>/
-                            <span class="pl-3 pr-3 stay-duration">April 2021 - May 2022</span>
+                            <span class="pl-3 pr-3 stay-duration">April 2021 – May 2022</span>
                         </button>
                     </div>
                     <div class="row mb-1">
                         <div class="col-10 ml-2">
-                            <p class="company-description">
-                                Built React and Node.js features for an energy management system.
-                            </p>
-                            <div class="collapse" id="therma">
+                            <p class="role-meta"><span class="dur" data-start="2021-04" data-end="2022-05">1 yr 2 mo</span> · Cebu, Philippines</p>
+                            <p class="company-description">Built and maintained React and Node.js features for an energy management system, on a custom Node backend.</p>
+                            <div class="collapse" id="coinspect">
                                 <ul class="company-points">
+                                    <li>Optimized existing UI screens and introduced coding standards.</li>
                                     <li>Built reusable React components with styled-components and Redux/Redux Thunk, tested with Jest.</li>
-                                    <li>Tuned up existing UI screens, introduced coding standards and plugged in several third-party APIs.</li>
+                                    <li>Integrated several third-party APIs.</li>
                                 </ul>
+                                
                             </div>
                         </div>
                     </div>
-                    <!-- Arcanys -->
+                    <!-- Arcanys (XLR8 Ventures) -->
                     <div class="row headers">
                         <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#arcanys" aria-expanded="false" aria-controls="arcanys">
                             <span class="pl-3 pr-3 company">Arcanys (XLR8 Ventures)</span>/
                             <span class="pl-3 pr-3 position">Web Software Developer</span>/
-                            <span class="pl-3 pr-3 stay-duration">March 2020 - April 2021</span>
+                            <span class="pl-3 pr-3 stay-duration">March 2020 – April 2021</span>
                         </button>
                     </div>
                     <div class="row mb-1">
                         <div class="col-10 ml-2">
-                            <p class="company-description">
-                                Wrote Node.js command line tools for a house fabrication system that read industry-standard PDFs and pull out precise measurements of house components.
-                            </p>
-                            <div class="collapse" id="arcanys"></div>
+                            <p class="role-meta"><span class="dur" data-start="2020-03" data-end="2021-04">1 yr 2 mo</span> · Cebu, Philippines</p>
+                            <p class="company-description">Worked on tools for a house fabrication system, mainly JavaScript command line tooling.</p>
+                            <div class="collapse" id="arcanys">
+                                <ul class="company-points">
+                                    <li>Wrote Node.js CLI tools that extract precise house-component measurements from industry-standard PDFs.</li>
+                                </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <!-- QIMA -->
                     <div class="row headers">
                         <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#qima" aria-expanded="false" aria-controls="qima">
-                            <span class="pl-3 pr-3 company">QIMA (formerly AsiaInspection)</span>/
+                            <span class="pl-3 pr-3 company">QIMA</span>/
                             <span class="pl-3 pr-3 position">Web Developer</span>/
-                            <span class="pl-3 pr-3 stay-duration">February 2017 - February 2020</span>
+                            <span class="pl-3 pr-3 stay-duration">February 2017 – February 2020</span>
                         </button>
                     </div>
                     <div class="row mb-1">
                         <div class="col-10 ml-2">
-                            <p class="company-description">
-                                Built quality management software for in-house inspection specialists, with several third-party APIs hooked in.
-                            </p>
+                            <p class="role-meta"><span class="dur" data-start="2017-02" data-end="2020-02">3 yrs 1 mo</span> · Cebu IT Park, Lahug, Cebu City</p>
+                            <p class="company-description">Built and maintained quality management software used by in-house quality inspection specialists, integrating several third-party APIs.</p>
                             <div class="collapse" id="qima">
                                 <ul class="company-points">
-                                    <li>Led a small front end team and wrote its coding standards.</li>
+                                    <li>Led a small team of front end developers.</li>
+                                    <li>Created the team’s coding standards.</li>
                                     <li>Built an offline-first Progressive Web App with Angular.</li>
                                 </ul>
+                                
                             </div>
                         </div>
                     </div>
-                    <!-- FPT -->
+                    <!-- FPT Software -->
                     <div class="row headers">
-                        <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#f-soft" aria-expanded="false" aria-controls="f-soft">
-                            <span class="pl-3 pr-3 company">FPT Software Philippines</span>/
+                        <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#fpt" aria-expanded="false" aria-controls="fpt">
+                            <span class="pl-3 pr-3 company">FPT Software</span>/
                             <span class="pl-3 pr-3 position">Software Development Engineer</span>/
                             <span class="pl-3 pr-3 stay-duration">April 2015 – February 2017</span>
                         </button>
                     </div>
                     <div class="row mb-1">
                         <div class="col-10 ml-2">
-                            <p class="company-description">
-                                Built apps in Angular, Java and .NET, including a large Japanese delivery app and an AR app for smart glasses.
-                            </p>
-                            <div class="collapse" id="f-soft"></div>
+                            <p class="role-meta"><span class="dur" data-start="2015-04" data-end="2017-02">1 yr 11 mo</span> · Cebu, Philippines</p>
+                            <p class="company-description">Built apps in Angular, Java and .NET.</p>
+                            <div class="collapse" id="fpt">
+                                <ul class="company-points">
+                                    <li>Worked on a large Japanese delivery app in Java.</li>
+                                    <li>Worked on an AR app for smart glasses.</li>
+                                </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <!-- PODD -->
                     <div class="row headers">
                         <button class="company-btn pl-3 pr-3 x" title="Click to expand or collapse" type="button" data-target="#podd" aria-expanded="false" aria-controls="podd">
-                            <span class="pl-3 pr-3 company">PODD Corp.</span>/
-                            <span class="pl-3 pr-3 position">On-the-Job trainee</span>/
-                            <span class="pl-3 pr-3 stay-duration">May 2014 – November 2014</span>
+                            <span class="pl-3 pr-3 company">PODD</span>/
+                            <span class="pl-3 pr-3 position">Trainee</span>/
+                            <span class="pl-3 pr-3 stay-duration">March 2014 – September 2014</span>
                         </button>
                     </div>
                     <div class="row mb-1">
                         <div class="col-10 ml-2">
-                            <p class="company-description">
-                                Worked as a mobile app tester for my first month and moved on to join a team of
-                                developers to produce a mobile game app. The second half of my stay I was able to
-                                lead my own small team to develop a different mobile game app.
-                            </p>
-                            <div class="collapse" id="podd"></div>
+                            <p class="role-meta"><span class="dur" data-start="2014-03" data-end="2014-09">7 mo</span> · Philippines</p>
+                            <p class="company-description">Ran test cases for a mobile application, first black box testing and later white box testing.</p>
+                            <div class="collapse" id="podd">
+                                <ul class="company-points">
+                                    <li>Joined a trainee team building several mobile app games, as tester first and then as a developer.</li>
+                                </ul>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -337,6 +350,14 @@
         </div>
     </footer>
     <script>
+        document.querySelectorAll('.dur').forEach(function (el) {
+            function ym(v) { var p = v.split('-'); return +p[0] * 12 + (+p[1] - 1); }
+            var n = new Date(), end = el.dataset.end ? ym(el.dataset.end) : n.getFullYear() * 12 + n.getMonth();
+            var m = end - ym(el.dataset.start) + 1, y = Math.floor(m / 12), r = m % 12, o = [];
+            if (y) o.push(y + (y > 1 ? ' yrs' : ' yr'));
+            if (r) o.push(r + ' mo');
+            el.textContent = o.join(' ') || '1 mo';
+        });
         document.querySelectorAll('.company-btn[data-target]').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var panel = document.querySelector(btn.getAttribute('data-target'));

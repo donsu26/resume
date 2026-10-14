@@ -231,3 +231,11 @@ h6[id]{ scroll-margin-top:72px; }
 .topnav .links a{ font:600 .74rem 'Raleway',sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; color:var(--muted); padding:8px 10px; border-radius:3px; transition:color .2s; }
 .topnav .links a:hover{ color:var(--fg); opacity:1; }
 @media (max-width:640px){ .topnav .links{ display:none } }
+
+/* experience details (aligned with starfield) */
+.role-meta{ font-size:12px; color:var(--muted); margin:2px 0 6px; letter-spacing:.02em; }
+.role-meta a{ color:var(--muted); }
+.kpis{ display:flex; flex-wrap:wrap; gap:10px; margin:4px 0 18px; }
+.kpi{ flex:1 1 150px; border:1px solid var(--line); border-radius:4px; padding:10px 12px; background:var(--surface); }
+.kpi strong{ display:block; font-size:26px; line-height:1.1; color:var(--fg); }
+.kpi span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
