@@ -1,663 +1,341 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Don Sumayan, senior full stack engineer and technical lead in Cebu, Philippines. Interactive resume.">
-<script>try{if(localStorage.getItem("resume-style")==="manga"&&!/[?&]style=starfield/.test(location.search)){location.replace("manga.html")}}catch(e){}</script>
-<title>Don Sumayan Resume</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap">
-<style>
-/* Layout concept: one long star chart. A fixed night sky sits behind a left-aligned editorial column, and the career is a constellation you click through. */
-:root{
-  --paper:#EEEBDA; --ink:#282B4A;
-  --bg:var(--ink); --fg:var(--paper); --accent:var(--paper); --accent-ink:var(--ink); --star:var(--paper); --sky-a:.85;
-  --bg2:color-mix(in srgb,var(--fg) 4%,var(--bg));
-  --surface:color-mix(in srgb,var(--fg) 7%,var(--bg));
-  --line:color-mix(in srgb,var(--fg) 22%,var(--bg));
-  --muted:color-mix(in srgb,var(--fg) 72%,var(--bg));
-  --violet:color-mix(in srgb,var(--fg) 45%,var(--bg));
-  --glow:color-mix(in srgb,var(--fg) 14%,transparent);
-  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
-  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
-  color-scheme:dark;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    --bg:var(--paper); --fg:var(--ink); --accent:var(--ink); --accent-ink:var(--paper); --star:var(--ink); --sky-a:.38;
-    color-scheme:light;
-  }
-}
-:root[data-theme="light"]{
-  --bg:var(--paper); --fg:var(--ink); --accent:var(--ink); --accent-ink:var(--paper); --star:var(--ink); --sky-a:.38;
-  color-scheme:light;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{background:var(--bg);color:var(--fg);font:400 1rem/1.6 var(--body);overflow-x:hidden}
-h1,h2,h3,p,ul{margin:0}
-ul{padding:0;list-style:none}
-button{font:inherit;color:inherit}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{width:min(1120px,100%);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
-#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.nav,main,footer{position:relative;z-index:1}
-
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:16px;height:56px}
-.brand{font:700 1.05rem var(--display);letter-spacing:-.01em;text-decoration:none;margin-right:auto}
-.links{display:flex;gap:2px}
-.links a{font:500 .74rem var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:8px 10px;border-radius:3px;transition:color .2s}
-.links a:hover,.links a.cur{color:var(--accent)}
-.theme{width:36px;height:36px;display:grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:3px;cursor:pointer;color:var(--fg)}
-.theme:hover{border-color:var(--accent);color:var(--accent)}
-.prog{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
-@media(max-width:720px){.links{display:none}}
-
-/* hero */
-.hero{position:relative;padding-block:clamp(36px,7vw,88px) clamp(28px,5vw,56px);background:radial-gradient(520px circle at var(--mx,70%) var(--my,30%),var(--glow),transparent 70%)}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
-@media(max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
-.eyebrow{font:500 .74rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:"";width:28px;height:1px;background:currentColor;flex:none}
-.name{font-family:var(--display);font-size:clamp(3.3rem,12.5vw,8.6rem);line-height:.9;letter-spacing:-.035em;margin-block:.22em .18em;cursor:default}
-.name .w{display:block;white-space:nowrap}
-.name .w.b{color:var(--accent)}
-.name i{font-style:normal;display:inline-block;font-variation-settings:"wght" var(--w,720),"wdth" 88;transition:font-variation-settings .25s ease;animation:rise .9s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i)*55ms + .1s)}
-.role{font:600 clamp(1.1rem,2.3vw,1.45rem)/1.3 var(--display);letter-spacing:-.01em}
-.role .sub{display:block;font-weight:400;color:var(--muted);margin-top:4px}
-.typed{color:var(--accent);font-weight:600}
-.caret{display:inline-block;width:2px;height:1.05em;background:var(--accent);margin-left:3px;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
-.lede{max-width:52ch;color:var(--muted);margin-top:20px;font-size:1.05rem}
-.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.btn{display:inline-flex;align-items:center;gap:8px;font:500 .8rem var(--mono);letter-spacing:.04em;padding:11px 16px;border-radius:3px;border:1px solid var(--line);background:transparent;cursor:pointer;text-decoration:none;transition:transform .15s,border-color .2s,background .2s}
-.btn:hover{border-color:var(--accent);transform:translateY(-2px)}
-.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
-.btn.pri:hover{background:color-mix(in srgb,var(--accent) 86%,var(--bg))}
-
-/* orbit */
-.sys{position:relative;width:min(100%,380px);aspect-ratio:1;margin-inline:auto;max-width:100%}
-.core{position:absolute;inset:42%;border-radius:50%;display:grid;place-items:center;font:800 .95rem var(--display);color:var(--accent-ink);background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--accent) 70%,#fff),var(--accent) 55%,color-mix(in srgb,var(--accent) 55%,var(--bg)));box-shadow:0 0 50px 8px color-mix(in srgb,var(--accent) 30%,transparent);letter-spacing:-.02em}
-.ring{position:absolute;inset:calc((100% - var(--d))/2);border:1px dashed var(--line);border-radius:50%;transform:rotate(var(--r0));animation:spin var(--t) linear infinite}
-.planet{position:absolute;left:50%;top:0;translate:-50% -50%;transform:rotate(calc(var(--r0)*-1));animation:unspin var(--t) linear infinite}
-.planet b{display:flex;align-items:center;gap:6px;padding:4px 9px 4px 7px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font:500 .68rem var(--mono);white-space:nowrap;font-weight:500}
-.planet b::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,var(--violet))}
-.sys:hover .ring,.sys:hover .planet{animation-play-state:paused}
-
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line);background:color-mix(in srgb,var(--bg) 60%,transparent)}
-.stat{padding:22px clamp(12px,2vw,24px);border-left:1px solid var(--line)}
-.stat:first-child{border-left:0}
-.stat strong{display:block;font:700 clamp(2rem,4.4vw,3rem)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.stat span{display:block;margin-top:8px;font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-@media(max-width:620px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
-
-/* sections */
-.sec{padding-block:clamp(48px,8vw,96px)}
-.sec h2{font:700 clamp(1.9rem,4.2vw,3rem)/1.05 var(--display);letter-spacing:-.028em;margin-top:12px;text-wrap:balance}
-.sec .intro{color:var(--muted);max-width:58ch;margin-top:12px}
-.pre{opacity:.55;transform:translateY(18px)}
-[data-rv]{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
-
-/* constellation */
-.map{margin-top:30px;border:1px solid var(--line);border-radius:4px;background:linear-gradient(180deg,color-mix(in srgb,var(--surface) 70%,transparent),color-mix(in srgb,var(--bg) 40%,transparent));padding:clamp(4px,1.5vw,16px)}
-.map svg{display:block;width:100%;height:auto;overflow:visible}
-.path{fill:none;stroke:var(--violet);stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:0;opacity:.75;animation:draw 2.4s .3s ease-out backwards}
-.bg-star{fill:var(--star);opacity:.4}
-.axis{stroke:var(--line);stroke-width:1}
-.tick{fill:var(--muted);font:400 13px var(--mono)}
-.node{cursor:pointer;outline:none;transition:opacity .3s}
-.node .gl{fill:var(--violet);opacity:.32;filter:url(#blur)}
-.node .st{fill:var(--muted);transition:fill .25s}
-.node .halo{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:0;transition:opacity .3s}
-.node text{fill:var(--muted);font:500 15px var(--mono);transition:fill .25s;pointer-events:none}
-.node .st,.node .gl{transform-box:fill-box;transform-origin:center;animation:pop .6s cubic-bezier(.2,1.4,.4,1) backwards;animation-delay:calc(var(--i)*.22s + .3s)}
-.node:hover .st,.node:focus-visible .st,.node.on .st{fill:var(--accent)}
-.node:hover text,.node:focus-visible text,.node.on text{fill:var(--fg)}
-.node:focus-visible .halo{opacity:1}
-.node.on .halo{opacity:1}
-.node.dim{opacity:.2}
-.node .pulse{fill:none;stroke:var(--accent);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
-@media(max-width:620px){.node text{display:none}.tick{font-size:20px}}
-
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.chip,.sk,.tag{font:500 .76rem var(--mono);letter-spacing:.02em;border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 11px;border-radius:3px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
-.chip:hover,.sk:hover,.tag:hover{color:var(--fg);border-color:var(--accent)}
-.chip[aria-pressed="true"],.sk[aria-pressed="true"],.tag[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.sk sup{font-size:.62rem;margin-left:5px;opacity:.7}
-
-.hud{position:relative;margin-top:18px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 82%,transparent);padding:clamp(18px,3vw,32px)}
-.hud::before,.hud::after{content:"";position:absolute;width:16px;height:16px;border:2px solid var(--accent)}
-.hud::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
-.hud::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
-.detail{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(18px,4vw,44px)}
-@media(max-width:760px){.detail{grid-template-columns:minmax(0,1fr)}}
-.detail.swap{animation:swap .45s cubic-bezier(.2,.8,.2,1)}
-.detail h3{font:700 clamp(1.8rem,3.6vw,2.6rem)/1 var(--display);letter-spacing:-.03em;overflow-wrap:anywhere}
-.detail .ttl{color:var(--accent);font:600 1.05rem var(--display);margin-top:8px}
-.detail .meta{font:400 .76rem/1.8 var(--mono);color:var(--muted);margin-top:14px;letter-spacing:.03em}
-.detail li{position:relative;padding-left:20px;margin-bottom:10px;min-width:0}
-.detail li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;background:var(--accent);transform:rotate(45deg)}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.tag{padding:4px 8px;font-size:.68rem}
-
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-top:22px}
-.kpi{border-top:1px solid var(--line);padding-top:10px;min-width:0}
-.kpi strong{display:block;font:700 2rem/1 var(--display);letter-spacing:-.03em;color:var(--accent)}
-.kpi span{display:block;font:400 .72rem/1.45 var(--mono);color:var(--muted);margin-top:6px}
-.btn.ext{margin-top:4px}
-
-.avail{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font:500 .78rem var(--mono);letter-spacing:.04em;border:1px solid var(--line);padding:8px 12px;border-radius:3px;background:color-mix(in srgb,var(--surface) 70%,transparent)}
-.avail .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:ping 2s ease-out infinite;flex:none}
-@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
-.detail .btn.ext{margin-top:16px}
-.want{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px 32px;margin:0}
-.want>div{border-top:1px solid var(--line);padding-top:12px;min-width:0}
-.want dt{font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.want dd{margin:8px 0 0;font:500 1.08rem/1.45 var(--display)}
-.openbox .tags{margin-top:26px}
-.quote{margin-inline:0}
-.quote blockquote{margin:0;max-width:68ch;font:500 clamp(1.05rem,2vw,1.3rem)/1.65 var(--display);letter-spacing:-.005em}
-.quote blockquote::before{content:"\201C";display:block;font:800 4.2rem/.7 var(--display);color:var(--accent);margin-bottom:10px}
-.quote figcaption{margin-top:22px;display:flex;flex-direction:column;gap:2px}
-.quote figcaption strong{font:700 1.05rem var(--display)}
-.quote figcaption span{font:400 .76rem var(--mono);color:var(--muted)}
-
-/* skills */
-.grp{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px 20px;padding-block:18px;border-top:1px solid var(--line)}
-.grp:last-of-type{border-bottom:1px solid var(--line)}
-.grp h3{font:500 .74rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding-top:8px}
-.grp .row{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
-.sk.static{cursor:default;border-style:dashed}
-.sk.static:hover{color:var(--muted);border-color:var(--line)}
-@media(max-width:620px){.grp{grid-template-columns:minmax(0,1fr)}.grp h3{padding-top:0}}
-.note{margin-top:18px;min-height:3.2em;font:400 .82rem/1.6 var(--mono);color:var(--muted)}
-.note button{background:none;border:0;color:var(--accent);cursor:pointer;text-decoration:underline;padding:0 0 0 6px;font:inherit}
-
-/* beyond code */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-top:30px}
-.card{position:relative;border:1px solid var(--line);background:var(--surface);padding:24px 20px;border-radius:4px;transition:transform .2s ease,border-color .2s;transform-style:preserve-3d;will-change:transform}
-.card:hover{border-color:var(--accent)}
-.card svg{width:44px;height:44px;color:var(--accent);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s cubic-bezier(.2,1.4,.4,1)}
-.card:hover svg{transform:translateY(-4px) rotate(-6deg)}
-.card h3{font:700 1.2rem var(--display);letter-spacing:-.02em;margin-top:16px}
-.card p{color:var(--muted);font-size:.92rem;margin-top:6px}
-.steam path{stroke-dasharray:6 8;animation:steam 2.4s linear infinite;opacity:.8}
-.steam path:nth-child(2){animation-delay:-.8s}
-.steam path:nth-child(3){animation-delay:-1.6s}
-.orbit-e{transform-origin:20px 20px;animation:spin2 12s linear infinite}
-
-/* credentials */
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:28px;margin-top:30px}
-.fact h3{font:500 .74rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding-bottom:10px;border-bottom:1px solid var(--line)}
-.fact p,.fact li{margin-top:12px}
-.fact small{display:block;color:var(--muted);font:400 .76rem var(--mono);margin-top:2px}
-
-/* contact */
-.crow{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:12px 20px;align-items:center;padding-block:18px;border-top:1px solid var(--line)}
-.crow:last-child{border-bottom:1px solid var(--line)}
-.crow dt{font:500 .74rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.crow dd{margin:0;font:600 clamp(1.05rem,2.6vw,1.6rem) var(--display);letter-spacing:-.015em;overflow-wrap:anywhere;user-select:all}
-.crow dd a{text-decoration:none}
-.crow dd a:hover{color:var(--accent)}
-.contact{margin-top:30px}
-@media(max-width:620px){.crow{grid-template-columns:minmax(0,1fr) auto}.crow dt{grid-column:1/-1}}
-footer{padding-block:32px 48px;color:var(--muted);font:400 .76rem var(--mono)}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
-
-.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:40;transform:translate(-50%,20px);opacity:0;background:var(--accent);color:var(--accent-ink);font:500 .78rem var(--mono);padding:10px 16px;border-radius:3px;pointer-events:none;transition:opacity .25s,transform .25s;max-width:calc(100% - 32px)}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-
-@keyframes rise{from{opacity:0;transform:translateY(45%) rotate(4deg)}}
-@keyframes blink{50%{opacity:0}}
-@keyframes spin{from{transform:rotate(var(--r0))}to{transform:rotate(calc(var(--r0) + 360deg))}}
-@keyframes unspin{from{transform:rotate(calc(var(--r0)*-1))}to{transform:rotate(calc(var(--r0)*-1 - 360deg))}}
-@keyframes spin2{to{transform:rotate(360deg)}}
-@keyframes draw{from{stroke-dashoffset:1}}
-@keyframes pop{from{transform:scale(0);opacity:0}}
-@keyframes pulse{from{transform:scale(1);opacity:.9}to{transform:scale(2.6);opacity:0}}
-@keyframes swap{from{opacity:0;transform:translateY(10px)}}
-@keyframes steam{to{stroke-dashoffset:-28}}
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  html{scroll-behavior:auto}
-  .pre{opacity:1;transform:none}
-}
-
-/* style switcher */
-.styleswitch{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;border:1px solid var(--line);border-radius:3px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow:hidden}
-.styleswitch a{font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:9px 12px;color:var(--muted)}
-.styleswitch a:hover{color:var(--fg)}
-.styleswitch a[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
-</style>
-
-<canvas id="sky" aria-hidden="true"></canvas>
-
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top">Don Sumayan</a>
-    <nav class="links" aria-label="Sections">
-      <a href="#open">Open to</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Project</a>
-      <a href="#beyond">Beyond code</a>
-      <a href="#contact">Contact</a>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Donraedel Sumayan, senior full stack engineer and technical lead in Cebu, Philippines. CV.">
+    <title>CV - Donraedel Sumayan</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+</head>
+<body class="d-flex flex-column align-items-center">
+    <nav class="style-cta" aria-label="Choose a style">
+        <span class="style-cta-text">Same resume, three styles</span>
+        <span class="style-cta-links">
+            <a href="index.html" aria-current="page">Classic</a>
+            <a href="starfield.html">Starfield</a>
+            <a href="manga.html">Manga</a>
+        </span>
     </nav>
-    <button class="theme" id="theme" type="button" aria-label="Switch colour theme" title="Switch colour theme">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 2.5a7.5 7.5 0 0 1 0 15z" fill="currentColor"/></svg>
-    </button>
-  </div>
-  <div class="prog" id="prog"></div>
-</header>
 
-<main id="top">
-  <section class="hero" id="hero">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">Cebu, Philippines · Technical Lead at GIG</p>
-        <h1 class="name" id="name" aria-label="Don Sumayan">
-          <span class="w" aria-hidden="true"><i style="--i:0">D</i><i style="--i:1">o</i><i style="--i:2">n</i></span>
-          <span class="w b" aria-hidden="true"><i style="--i:3">S</i><i style="--i:4">u</i><i style="--i:5">m</i><i style="--i:6">a</i><i style="--i:7">y</i><i style="--i:8">a</i><i style="--i:9">n</i></span>
-        </h1>
-        <p class="role">Senior Full Stack Engineer &amp; Technical Lead
-          <span class="sub">working in <span class="typed" id="typed">React</span><span class="caret" aria-hidden="true"></span></span>
-        </p>
-        <p class="lede">Eleven-plus years building web products end to end in TypeScript, Next.js, React and Node.js, with React Native apps on the App Store and Google Play. Four-plus years as a technical lead owning architecture, code standards and delivery, including as a founding team member of an early-stage product.</p>
-        <p class="lede" style="margin-top:12px">I mentor developers through code review and unblocking, drive AI-assisted development across the team with Claude tooling and GitHub Copilot agent mode, and I am comfortable in existing codebases, async remote work and fast-changing priorities.</p>
-        <p class="avail"><span class="dot" aria-hidden="true"></span>Open to full-time and part-time roles</p>
-        <div class="cta">
-          <button class="btn pri" type="button" data-copy="don.sumayan@gmail.com" data-what="Email">Copy email</button>
-          <a class="btn" href="https://www.linkedin.com/in/donraedelsumayan" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="#experience">See the career map</a>
+    <div class="custom-container">
+            <!-- header -->
+            <div class="row mt-5 mb-5">
+                <div class="col d-flex flex-column justify-content-center align-items-end">
+                    <div class="text-uppercase last-name">sumayan</div>
+                    <div class="text-uppercase first-name">donraedel</div>
+                    <div class="contacts">
+                        <span>Cebu City, Philippines</span>
+                        <span class="ml-3"><a href="mailto:don.sumayan@gmail.com">don.sumayan@gmail.com</a></span>
+                        <span class="ml-3"><a href="https://www.linkedin.com/in/donraedelsumayan" target="_blank" rel="noopener">linkedin.com/in/donraedelsumayan</a></span>
+                        <span class="ml-3"><a href="https://github.com/donsu26" target="_blank" rel="noopener">github.com/donsu26</a></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="ako-nawng-container"></div>
+                </div>
+            </div>
+            <!-- summary -->
+            <div class="row mb-3">
+                <div class="col-2 text-right">
+                    <h6 class="headers font-weight-bold">summary</h6>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-10">
+                            <p class="company-description">Senior full stack engineer and technical lead with 11+ years building web and mobile products end to end in TypeScript, React/Next.js and Node.js/NestJS. 4+ years as a technical lead owning architecture, code standards and delivery, including as a founding team member of an early-stage product. Mentors developers through code review and unblocking, and drives AI-assisted development across the team with Claude tooling and GitHub Copilot agent mode.</p>
+                            <p class="company-description font-weight-bold">Open to full-time and part-time roles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- skills -->
+            <div class="row mb-4">
+                <div class="col-2 text-right">
+                    <h6 class="headers font-weight-bold">skills</h6>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col-9 text-center font-weight-bold">
+                            <div class="skills">
+                                typescript / javascript / react / next.js / react native (expo) / angular / redux / pwa
+                            </div>
+                            <div class="skills">
+                                node.js / nestjs / express / rest / postgresql / mysql / mongodb / redis / firebase
+                            </div>
+                            <div class="skills">
+                                aws (s3, rds, ecs fargate, sqs) / terraform / gcp / git / jest / eslint / jira
+                            </div>
+                            <div class="skills mb-3">
+                                claude code / github copilot / amazon bedrock / claude api / openai api / prompt engineering
+                            </div>
+                            <div class="text-secondary" style="font-size:14px">
+                                resourceful / independent / friendly / quick study / persevering
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- experiences -->
+            <div class="row">
+                <div class="col-2 text-right">
+                    <h6 class="headers font-weight-bold">experience</h6>
+                </div>
+                <div class="col">
+                    <!-- GIG -->
+                    <div class="row headers">
+                        <button class="company-btn pl-3 pr-3 x" type="button" data-target="#gig" aria-expanded="true" aria-controls="gig">
+                            <span class="pl-3 pr-3 company">GIG (gigrewards.ph)</span>/
+                            <span class="pl-3 pr-3 position">Technical Lead, Founding Team</span>/
+                            <span class="pl-3 pr-3 stay-duration">August 2024 - Present</span>
+                        </button>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-10 ml-2">
+                            <p class="company-description">
+                                GIG started as a project at Sovrun (formerly BreederDAO) and grew into its own team and brand, GIGRewards, in March 2025.
+                                A rewards platform where users earn points they redeem for mobile data and load, with GCash and Maya payouts.
+                            </p>
+                            <div class="collapse show" id="gig">
+                                <ul class="company-points">
+                                    <li>Built the platform from the ground up: React Native mobile app, Next.js admin dashboard and Node.js API.</li>
+                                    <li>Own the architecture, scope and estimate work, mentor developers, review code and integrate third-party APIs.</li>
+                                    <li>Built a self-hosted ffmpeg video worker on AWS (SQS, ECS Fargate, Terraform) to replace MediaConvert, with autoscaling that never cuts off long encodes.</li>
+                                    <li>Built an AI transcript pre-screen for reviewers, choosing Claude Haiku and Qwen on cost and accuracy. About 88% of its flags matched the client's QA rejections.</li>
+                                    <li>Built an AI task analyzer on Amazon Bedrock (Claude) that checks video submissions against a quest's requirements and returns a confidence level.</li>
+                                    <li>Made the reviewer page about 3x faster (1.4s to 0.4s per submission) and cut its memory use by 60%.</li>
+                                    <li>Manage AWS infrastructure with Terraform, including moving production credentials into Secrets Manager.</li>
+                                    <li>Drove the team's shift to AI-assisted development with Claude Code and GitHub Copilot agent mode.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lista -->
+                    <div class="row headers">
+                        <button class="company-btn pl-3 pr-3 x" type="button" data-target="#lista" aria-expanded="false" aria-controls="lista">
+                            <span class="pl-3 pr-3 company">Lista Bookkeeping App Inc.</span>/
+                            <span class="pl-3 pr-3 position">Front End Technical Lead</span>/
+                            <span class="pl-3 pr-3 stay-duration">June 2022 - August 2024</span>
+                        </button>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-10 ml-2">
+                            <p class="company-description">
+                                Led and mentored the team building the React Native (Expo) mobile apps, live on the App Store and Google Play, and the Next.js web app on a NestJS back end.
+                            </p>
+                            <div class="collapse" id="lista">
+                                <ul class="company-points">
+                                    <li>Spearheaded the rewrite of the legacy React Native app into a more scalable, performant codebase.</li>
+                                    <li>Raised code quality through code reviews, enforced standards and automated checks (ESLint, Jest).</li>
+                                    <li>Worked with the product team to turn requirements and UI/UX into engineering tasks with proper estimates.</li>
+                                    <li>Directed the team building prompts and integrations for the OpenAI-powered company AI assistant.</li>
+                                    <li>Integrated multiple third-party REST APIs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Therma -->
+                    <div class="row headers">
+                        <button class="company-btn pl-3 pr-3 x" type="button" data-target="#therma" aria-expanded="false" aria-controls="therma">
+                            <span class="pl-3 pr-3 company">Therma (CoInspect PH)</span>/
+                            <span class="pl-3 pr-3 position">Senior Software Engineer</span>/
+                            <span class="pl-3 pr-3 stay-duration">April 2021 - May 2022</span>
+                        </button>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-10 ml-2">
+                            <p class="company-description">
+                                Built React and Node.js features for an energy management system.
+                            </p>
+                            <div class="collapse" id="therma">
+                                <ul class="company-points">
+                                    <li>Built reusable React components with styled-components and Redux/Redux Thunk, tested with Jest.</li>
+                                    <li>Optimized existing UI screens, introduced coding standards and integrated several third-party APIs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Arcanys -->
+                    <div class="row headers">
+                        <button class="company-btn pl-3 pr-3 x" type="button" data-target="#arcanys" aria-expanded="false" aria-controls="arcanys">
+                            <span class="pl-3 pr-3 company">Arcanys (XLR8 Ventures)</span>/
+                            <span class="pl-3 pr-3 position">Web Software Developer</span>/
+                            <span class="pl-3 pr-3 stay-duration">March 2020 - April 2021</span>
+                        </button>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-10 ml-2">
+                            <p class="company-description">
+                                Built Node.js command line tools for a house fabrication system that extract precise house-component measurements from industry-standard PDFs.
+                            </p>
+                            <div class="collapse" id="arcanys"></div>
+                        </div>
+                    </div>
+                    <!-- QIMA -->
+                    <div class="row headers">
+                        <button class="company-btn pl-3 pr-3 x" type="button" data-target="#qima" aria-expanded="false" aria-controls="qima">
+                            <span class="pl-3 pr-3 company">QIMA (formerly AsiaInspection)</span>/
+                            <span class="pl-3 pr-3 position">Web Developer</span>/
+                            <span class="pl-3 pr-3 stay-duration">February 2017 - February 2020</span>
+                        </button>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-10 ml-2">
+                            <p class="company-description">
+                                Built quality management software used by in-house inspection specialists, integrating several third-party APIs.
+                            </p>
+                            <div class="collapse" id="qima">
+                                <ul class="company-points">
+                                    <li>Led a small front end team and authored its coding standards.</li>
+                                    <li>Built an offline-first Progressive Web App with Angular.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FPT -->
+                    <div class="row headers">
+                        <button class="company-btn pl-3 pr-3 x" type="button" data-target="#f-soft" aria-expanded="false" aria-controls="f-soft">
+                            <span class="pl-3 pr-3 company">FPT Software Philippines</span>/
+                            <span class="pl-3 pr-3 position">Software Development Engineer</span>/
+                            <span class="pl-3 pr-3 stay-duration">April 2015 – February 2017</span>
+                        </button>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-10 ml-2">
+                            <p class="company-description">
+                                Built apps in Angular, Java and .NET, including a large Japanese delivery app and an AR app for smart glasses.
+                            </p>
+                            <div class="collapse" id="f-soft"></div>
+                        </div>
+                    </div>
+                    <!-- PODD -->
+                    <div class="row headers">
+                        <button class="company-btn pl-3 pr-3 x" type="button" data-target="#podd" aria-expanded="false" aria-controls="podd">
+                            <span class="pl-3 pr-3 company">PODD Corp.</span>/
+                            <span class="pl-3 pr-3 position">On-the-Job trainee</span>/
+                            <span class="pl-3 pr-3 stay-duration">May 2014 – November 2014</span>
+                        </button>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-10 ml-2">
+                            <p class="company-description">
+                                Worked as a mobile app tester for my first month and moved on to join a team of
+                                developers to produce a mobile game app. The second half of my stay I was able to
+                                lead my own small team to develop a different mobile game app.
+                            </p>
+                            <div class="collapse" id="podd"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- project -->
+            <div class="row mb-3">
+                <div class="col-2 text-right">
+                    <h6 class="headers font-weight-bold">project</h6>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="font-weight-bold">
+                                <a href="https://github.com/donsu26/badger" target="_blank" rel="noopener">Badger</a>
+                            </div>
+                            Open-source macOS app (Python, Swift) with full-screen reminders, calendar integration and a Claude Code skill. Built with Claude and used daily.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- achievements -->
+            <div class="row mb-3">
+                <div class="col-2 text-right">
+                    <h6 class="headers font-weight-bold">achievements</h6>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="font-weight-bold">
+                                Philippine Information Technology
+                            </div>
+                            <div class="font-weight-bold">
+                                General Certification Examination
+                            </div>
+                            Passer , March 8, 2014
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- education -->
+            <div class="row mb-3">
+                <div class="col-2 text-right">
+                    <h6 class="headers font-weight-bold">education</h6>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="font-weight-bold">
+                                Bachelor of Science in Information Technology
+                            </div>
+                            <div class="font-weight-bold">
+                                Cebu Institute of Technology – University
+                            </div>
+                            Cebu City
+                        </div>
+                        <div class="col">
+                            <span>
+                                2011-2015
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- languages -->
+            <div class="row mb-3">
+                <div class="col-2 text-right">
+                    <h6 class="headers font-weight-bold">languages</h6>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <span class="info">English</span>: Full professional
+                            </div>
+                            <div>
+                                <span class="info">Filipino</span>: Native or bilingual
+                            </div>
+                            <div>
+                                <span class="info">Cebuano</span>: Native or bilingual
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <footer class='mt-auto p-3 text-center'>
+        <div class="font-weight-bold">
+            Dive into the new world!
         </div>
-      </div>
-      <div class="sys" aria-label="Main tools in orbit: React, Node.js, Next.js, React Native" role="img">
-        <div class="ring" style="--d:34%;--t:24s;--r0:20deg"><div class="planet" style="--t:24s;--r0:20deg;--c:var(--accent)"><b>React</b></div></div>
-        <div class="ring" style="--d:52%;--t:34s;--r0:140deg"><div class="planet" style="--t:34s;--r0:140deg;--c:color-mix(in srgb,var(--accent) 70%,var(--bg))"><b>Node.js</b></div></div>
-        <div class="ring" style="--d:70%;--t:46s;--r0:260deg"><div class="planet" style="--t:46s;--r0:260deg;--c:color-mix(in srgb,var(--accent) 50%,var(--bg))"><b>Next.js</b></div></div>
-        <div class="ring" style="--d:90%;--t:60s;--r0:70deg"><div class="planet" style="--t:60s;--r0:70deg;--c:var(--violet)"><b>React Native</b></div></div>
-        <div class="core">DS</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="stats" id="stats">
-    <div class="stat"><strong data-n="11" data-suf="+" id="yrs">11+</strong><span>Years building</span></div>
-    <div class="stat"><strong data-n="4" data-suf="+" id="lead">4+</strong><span>Years as technical lead</span></div>
-    <div class="stat"><strong data-n="7">7</strong><span>Companies</span></div>
-    <div class="stat"><strong data-n="3">3</strong><span>Languages</span></div>
-  </div>
-
-  <section class="sec" id="open">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Looking for</p>
-      <h2 data-rv>Open to full-time and part-time work</h2>
-      <div class="hud openbox" data-rv>
-        <dl class="want">
-          <div><dt>Roles</dt><dd>Senior full stack engineer, technical lead, React and web developer</dd></div>
-          <div><dt>Engagement</dt><dd>Full-time or part-time</dd></div>
-          <div><dt>Stack</dt><dd>React, Next.js, TypeScript, Node.js and NestJS, React Native, AWS, AI-assisted development</dd></div>
-          <div><dt>Based in</dt><dd>Cebu, Philippines (UTC+8)</dd></div>
-          <div><dt>How I work</dt><dd>Async remote work, existing codebases and fast-changing priorities. I mentor developers, review code and unblock teams.</dd></div>
-        </dl>
-        <div class="tags">
-          <button class="btn pri" type="button" data-copy="don.sumayan@gmail.com" data-what="Email">Copy email</button>
-          <a class="btn" href="#contact">All contact details</a>
+        <div>
+            updated : October 2026
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="experience">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Experience</p>
-      <h2 data-rv>Seven stops, one direction</h2>
-      <p class="intro" data-rv>Each star is a job, sized by how long I stayed. Select one to read what I did there.</p>
-      <div class="map" data-rv><svg id="svg" viewBox="0 0 1000 300" role="group" aria-label="Career constellation, 2014 to now"></svg></div>
-      <div class="chips" id="chips" role="group" aria-label="Choose a role" data-rv></div>
-      <div class="hud" data-rv><div class="detail" id="detail" aria-live="polite"></div></div>
-    </div>
-  </section>
-
-  <section class="sec" id="voices">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Recommendation</p>
-      <h2 data-rv>What a teammate says</h2>
-      <figure class="hud quote" data-rv>
-        <blockquote>Having a good mentor is hard to come by, but having a great mentor is literally like finding a diamond in the rough. Don was the latter kind of mentor to me. He is highly passionate about his craft, approachable to colleagues, very knowledgeable technically, and always willing to take the time to pass on his knowledge to his subordinates. I learned a lot in the one year I worked with him. I definitely grew a lot in that time, mainly because of him as a mentor, colleague, and friend. Don will be a great addition to any team; his expertise would definitely be an asset, whether as a lead or a developer. He comes highly recommended.</blockquote>
-        <figcaption><strong>Emilio Brioso</strong><span>Software engineer, reported to Don directly · LinkedIn, August 1, 2024</span></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="sec" id="skills">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Skills</p>
-      <h2 data-rv>Pick a skill, see where it lived</h2>
-      <p class="intro" data-rv>Selecting a skill lights up the roles where I used it on the map above. The small number is how many roles. Dashed skills apply across my work and are not tied to one role.</p>
-      <div id="groups" style="margin-top:28px" data-rv></div>
-      <p class="note" id="skillnote" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <section class="sec" id="projects">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Project</p>
-      <h2 data-rv>Something I built for myself</h2>
-      <div class="hud" data-rv>
-        <div class="detail">
-          <div><h3>Badger</h3><p class="ttl">Open-source macOS app</p><p class="meta">Python · Swift<br>Built with Claude, used daily</p></div>
-          <div>
-            <ul><li>Full-screen reminders on macOS.</li><li>Calendar integration.</li><li>Includes a Claude Code skill.</li></ul>
-            <div class="tags"><a class="btn ext" href="https://github.com/donsu26/badger" target="_blank" rel="noopener">github.com/donsu26/badger</a></div>
-          </div>
+        <div>
+            classic / <a href="./starfield.html">starfield</a> / <a href="./manga.html">manga</a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="beyond">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Beyond code</p>
-      <h2 data-rv>Off the clock</h2>
-      <div class="cards" data-rv>
-        <article class="card">
-          <svg viewBox="0 0 40 40" aria-hidden="true"><g class="steam"><path d="M14 11c-2-2 2-4 0-7"/><path d="M20 11c-2-2 2-4 0-7"/><path d="M26 11c-2-2 2-4 0-7"/></g><path d="M8 16h20v8a8 8 0 0 1-8 8h-4a8 8 0 0 1-8-8z"/><path d="M28 18h2.5a3.5 3.5 0 0 1 0 7H28"/></svg>
-          <h3>Coffee</h3><p>Brewing and drinking it.</p>
-        </article>
-        <article class="card">
-          <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="8"/><g class="orbit-e"><ellipse cx="20" cy="20" rx="16" ry="5" transform="rotate(-20 20 20)"/></g></svg>
-          <h3>Space and sci-fi</h3><p>A fan of space and anything sci-fi.</p>
-        </article>
-        <article class="card">
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 9h10a3 3 0 0 1 3 3v20a3 3 0 0 0-3-3H7z"/><path d="M33 9H23a3 3 0 0 0-3 3v20a3 3 0 0 1 3-3h10z"/></svg>
-          <h3>Light novels</h3><p>Read them as a hobby.</p>
-        </article>
-        <article class="card">
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4l14 8v16l-14 8L6 28V12z"/><path d="M20 12l8 14H12z"/></svg>
-          <h3>RPG games</h3><p>Love playing them.</p>
-        </article>
-        <article class="card">
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 15v10M10 12v16M30 12v16M34 15v10M10 20h20"/></svg>
-          <h3>The gym</h3><p>Recently started going.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="details">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Details</p>
-      <h2 data-rv>Education, languages, credentials</h2>
-      <div class="facts" data-rv>
-        <div class="fact"><h3>Education</h3><p>BS Information Technology<small>Cebu Institute of Technology · 2011 to 2015</small></p></div>
-        <div class="fact"><h3>Certification</h3><p>PHIL-IT GCE</p></div>
-        <div class="fact"><h3>Languages</h3>
-          <ul><li>English<small>Full professional</small></li><li>Filipino<small>Native or bilingual</small></li><li>Cebuano<small>Native or bilingual</small></li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="contact">
-    <div class="wrap">
-      <p class="eyebrow" data-rv>Contact</p>
-      <h2 data-rv>Say hello</h2>
-      <dl class="contact" data-rv>
-        <div class="crow"><dt>Email</dt><dd id="v-email">don.sumayan@gmail.com</dd><button class="btn" type="button" data-copy="don.sumayan@gmail.com" data-what="Email" data-target="v-email">Copy</button></div>
-        <div class="crow"><dt>LinkedIn</dt><dd id="v-li"><a href="https://www.linkedin.com/in/donraedelsumayan" target="_blank" rel="noopener">linkedin.com/in/donraedelsumayan</a></dd><button class="btn" type="button" data-copy="https://www.linkedin.com/in/donraedelsumayan" data-what="Link" data-target="v-li">Copy</button></div>
-      </dl>
-    </div>
-  </section>
-</main>
-
-<footer><div class="wrap"><span>Don Sumayan · Cebu, Philippines</span><span id="stamp"></span></div></footer>
-<nav class="styleswitch" aria-label="Choose a style"><a href="index.html" data-style="starfield" aria-current="page">Starfield</a><a href="manga.html" data-style="manga">Manga</a></nav>
-<script>(function(){var cur='starfield';try{localStorage.setItem("resume-style",cur)}catch(e){}document.querySelectorAll(".styleswitch a").forEach(function(l){l.addEventListener("click",function(){try{localStorage.setItem("resume-style",l.dataset.style)}catch(e){}})})})();</script>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script>
-(function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var $ = function(s,r){return (r||document).querySelector(s)};
-  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-  var NOW = new Date();
-  var MN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  function ym(s){var p=s.split('-');return +p[0]*12+(+p[1]-1)}
-  var nowM = NOW.getFullYear()*12+NOW.getMonth();
-  function lab(s){var p=s.split('-');return MN[+p[1]-1]+' '+p[0]}
-  function dur(m){var y=Math.floor(m/12),r=m%12,o=[];if(y)o.push(y+(y>1?' yrs':' yr'));if(r)o.push(r+' mo');return o.join(' ')||'1 mo'}
-
-  var ROLES = [
-    {id:'podd',co:'PODD',short:'PODD',title:'Trainee',start:'2014-03',end:'2014-09',where:'Philippines',y:195,
-     pts:['Ran test cases for a mobile application, first black box testing and later white box testing.','Joined a trainee team building several mobile app games, as tester first and then as a developer.'],
-     tags:['QA testing']},
-    {id:'fpt',co:'FPT Software',short:'FPT',title:'Software Development Engineer',start:'2015-04',end:'2017-02',where:'Cebu, Philippines',y:120,
-     pts:['Built apps in Angular, Java and .NET.','Worked on a large Japanese delivery app in Java.','Worked on an AR app for smart glasses.'],
-     tags:['Angular','Java','.NET']},
-    {id:'qima',co:'QIMA',short:'QIMA',title:'Web Developer',start:'2017-02',end:'2020-02',where:'Cebu IT Park, Lahug, Cebu City',y:205,
-     pts:['Built and maintained quality management software used by in-house quality inspection specialists, integrating several third-party APIs.','Led a small team of front end developers.','Created the team’s coding standards.','Built an offline-first Progressive Web App with Angular.'],
-     tags:['Angular','PWA','JavaScript','Team leadership','Coding standards','Third-party APIs']},
-    {id:'arcanys',co:'Arcanys (XLR8 Ventures)',short:'Arcanys',title:'Web Software Developer',start:'2020-03',end:'2021-04',where:'Cebu, Philippines',y:110,
-     pts:['Worked on tools for a house fabrication system, mainly JavaScript command line tooling.','Wrote Node.js CLI tools that extract precise house-component measurements from industry-standard PDFs.'],
-     tags:['JavaScript','Node.js']},
-    {id:'coinspect',co:'Therma (CoInspect PH)',short:'CoInspect',title:'Senior Software Engineer',start:'2021-04',end:'2022-05',where:'Cebu, Philippines',y:195,
-     pts:['Built and maintained React and Node.js features for an energy management system, on a custom Node backend.','Optimized existing UI screens and introduced coding standards.','Built reusable React components with styled-components and Redux/Redux Thunk, tested with Jest.','Integrated several third-party APIs.'],
-     tags:['React','Node.js','Redux','styled-components','Jest','UX','Coding standards','Third-party APIs']},
-    {id:'lista',co:'Lista Bookkeeping App Inc.',short:'Lista',title:'Front End Technical Lead',start:'2022-06',end:'2024-08',where:'',url:'https://www.lista.com.ph/',y:100,
-     pts:['Led and mentored the team building the React Native (Expo managed) mobile apps, live on the App Store and Google Play, and the Next.js web app on a NestJS back end.','Spearheaded the rewrite of the legacy React Native app into a more scalable, performant codebase, and led front end work on new features.','Kept the team unblocked with technical direction so they could stay focused on delivery.','Raised code quality through regular code reviews, enforced standards and automated checks (ESLint, Jest).','Worked with the product team to turn requirements and UI/UX into engineering tasks with proper estimates.','Directed the team building prompts and integrations for the OpenAI-powered company AI Assistant.','Implemented and integrated multiple third-party REST APIs.'],
-     tags:['React','React Native','Expo & EAS','iOS & Android releases','Next.js','NestJS','REST APIs','Team leadership','Mentoring','Code review','Coding standards','ESLint','Jest','UX','OpenAI API','Prompt engineering','Third-party APIs']},
-    {id:'gig',co:'GIG',short:'GIG',title:'Technical Lead, Founding Team',start:'2024-08',end:null,where:'Started as a Sovrun project',url:'https://gigrewards.ph/',y:125,
-     pts:['GIG started as a project inside Sovrun (formerly BreederDAO) and grew into its own dedicated team and brand, GIGRewards, in March 2025. I was part of the founding team throughout.','Built the platform from the ground up: a rewards app with a React Native mobile app, a Next.js admin dashboard and a Node.js API, covering points, mobile data and load redemptions, and GCash and Maya payouts.','Own the architecture, scope and estimate work, set quality standards, mentor developers and unblock the team through code review, and integrate third-party APIs.','Built a self-hosted ffmpeg video worker on AWS (SQS, ECS Fargate, Terraform) to replace MediaConvert, and reworked its autoscaling so workers start on the first job and long encodes are never cut off.','Built an AI transcript pre-screen for reviewers: analyzed the client’s QA rejections to define the review criteria, compared LLMs on cost and accuracy (chose Claude Haiku and Qwen), and built it with AI coding tools, reviewing and testing the output.','Built an AI task analyzer on Amazon Bedrock (Claude) that checks video submissions against a quest’s requirements using transcriptions and screenshots, returning a result with a confidence level for first-level validation.','Made the reviewer page about 3x faster and cut its memory use by 60% through database indexing and media-loading fixes.','Manage AWS infrastructure with Terraform (S3, RDS, ECS), including moving production credentials into Secrets Manager.','Drove the team’s shift to AI-assisted development with Claude Code and GitHub Copilot agent mode, shipping features built with AI coding agents.'],
-     kpis:[{v:'3x',l:'faster reviewer page, 1.4s to 0.4s per submission'},{v:'60%',l:'less memory use on that page'},{v:'88%',l:'of AI pre-screen flags matched the client’s QA rejections'}],
-     tags:['React Native','Next.js','Node.js','ECS Fargate','SQS','S3','RDS','Terraform','Secrets Manager','MediaConvert','ffmpeg','Amazon Bedrock','LLM features','Claude Code','GitHub Copilot','AI-assisted development','Team leadership','Mentoring','Architecture','Code review','Coding standards','Third-party APIs']}
-  ];
-  ROLES.forEach(function(r){r.months=(r.end?ym(r.end):nowM)-ym(r.start)+1;r.range=lab(r.start)+' – '+(r.end?lab(r.end):'Present')});
-  var byId={};ROLES.forEach(function(r){byId[r.id]=r});
-  var state={role:'gig',skill:null};
-
-  /* ---------- constellation ---------- */
-  var svg=$('#svg');
-  var X0=50,X1=950,t0=ym('2014-03'),t1=nowM+1;
-  function xOf(s){return X0+(ym(s)-t0)/(t1-t0)*(X1-X0)}
-  function rad(r){return 6+Math.sqrt(r.months)*0.95}
-  var seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
-  var h='<defs><filter id="blur" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6"/></filter></defs>';
-  for(var i=0;i<46;i++){h+='<circle class="bg-star" cx="'+(rnd()*1000).toFixed(1)+'" cy="'+(10+rnd()*250).toFixed(1)+'" r="'+(0.6+rnd()*1.2).toFixed(2)+'"/>'}
-  h+='<line class="axis" x1="'+X0+'" x2="'+X1+'" y1="262" y2="262"/>';
-  h+='<line class="axis" x1="'+X0+'" x2="'+X0+'" y1="257" y2="267"/><text class="tick" x="'+X0+'" y="288" text-anchor="middle">2014</text>';
-  for(var y=2016;y<=NOW.getFullYear();y+=2){var tx=X0+(ym(y+'-01')-t0)/(t1-t0)*(X1-X0);h+='<line class="axis" x1="'+tx.toFixed(1)+'" x2="'+tx.toFixed(1)+'" y1="257" y2="267"/><text class="tick" x="'+tx.toFixed(1)+'" y="288" text-anchor="middle">'+y+'</text>'}
-  var d='';ROLES.forEach(function(r,i){r.x=xOf(r.start);d+=(i?' L':'M')+r.x.toFixed(1)+' '+r.y});
-  h+='<path class="path" pathLength="1" d="'+d+'"/>';
-  ROLES.forEach(function(r,i){
-    var rr=rad(r),cur=!r.end,ly=r.y<160?r.y-rr-14:r.y+rr+24;
-    h+='<g class="node" data-id="'+r.id+'" tabindex="0" role="button" aria-label="'+r.co+', '+r.title+', '+r.range+'" style="--i:'+i+'">'
-      +'<circle class="gl" cx="'+r.x.toFixed(1)+'" cy="'+r.y+'" r="'+(rr*2.4).toFixed(1)+'"/>'
-      +(cur?'<circle class="pulse" cx="'+r.x.toFixed(1)+'" cy="'+r.y+'" r="'+rr.toFixed(1)+'"/>':'')
-      +'<circle class="halo" cx="'+r.x.toFixed(1)+'" cy="'+r.y+'" r="'+(rr+8).toFixed(1)+'"/>'
-      +'<circle class="st" cx="'+r.x.toFixed(1)+'" cy="'+r.y+'" r="'+rr.toFixed(1)+'"/>'
-      +'<text x="'+r.x.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle">'+r.short+'</text></g>';
-  });
-  svg.innerHTML=h;
-
-  /* role chips (newest first) */
-  var chips=$('#chips');
-  ROLES.slice().reverse().forEach(function(r){
-    var b=document.createElement('button');b.type='button';b.className='chip';b.dataset.id=r.id;b.textContent=r.short;b.setAttribute('aria-pressed','false');chips.appendChild(b);
-  });
-
-  /* detail */
-  var detail=$('#detail');
-  function renderDetail(){
-    var r=byId[state.role];
-    var meta=r.range+'<br>'+dur(r.months)+(r.where?'<br>'+r.where:'');
-    var tg=r.tags.map(function(t){return '<button type="button" class="tag" data-skill="'+t+'" aria-pressed="'+(state.skill===t)+'">'+t+'</button>'}).join('');
-    detail.innerHTML='<div><h3>'+r.co+'</h3><p class="ttl">'+r.title+'</p><p class="meta">'+meta+'</p>'+(r.url?'<a class="btn ext" href="'+r.url+'" target="_blank" rel="noopener">'+r.url.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')+'</a>':'')+'</div>'
-      +'<div><ul>'+r.pts.map(function(p){return '<li>'+p+'</li>'}).join('')+'</ul>'+(r.kpis?'<div class="kpis">'+r.kpis.map(function(k){return '<div class="kpi"><strong>'+k.v+'</strong><span>'+k.l+'</span></div>'}).join('')+'</div>':'')+'<div class="tags">'+tg+'</div></div>';
-    if(!reduce){detail.classList.remove('swap');void detail.offsetWidth;detail.classList.add('swap')}
-  }
-  function paint(){
-    $$('.node',svg).forEach(function(n){
-      var r=byId[n.dataset.id];
-      n.classList.toggle('on',r.id===state.role);
-      n.classList.toggle('dim',!!state.skill && r.tags.indexOf(state.skill)<0);
-    });
-    $$('.chip',chips).forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.id===state.role))});
-    $$('.tag',detail).forEach(function(t){t.setAttribute('aria-pressed',String(t.dataset.skill===state.skill))});
-    $$('.sk[data-skill]').forEach(function(s){s.setAttribute('aria-pressed',String(s.dataset.skill===state.skill))});
-    var note=$('#skillnote');
-    if(state.skill){
-      var used=ROLES.filter(function(r){return r.tags.indexOf(state.skill)>=0}).map(function(r){return r.co});
-      note.innerHTML=state.skill+': '+used.join(', ')+'.<button type="button" id="clr">Clear</button>';
-      $('#clr').onclick=function(){setSkill(null)};
-    } else note.textContent='Select a skill to light up the roles where I used it.';
-  }
-  function selectRole(id){state.role=id;renderDetail();paint()}
-  function setSkill(s){state.skill=(s===state.skill)?null:s;paint()}
-  svg.addEventListener('click',function(e){var n=e.target.closest('.node');if(n)selectRole(n.dataset.id)});
-  svg.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){var n=e.target.closest('.node');if(n){e.preventDefault();selectRole(n.dataset.id)}}});
-  chips.addEventListener('click',function(e){var c=e.target.closest('.chip');if(c)selectRole(c.dataset.id)});
-  detail.addEventListener('click',function(e){var t=e.target.closest('.tag');if(t){setSkill(t.dataset.skill);}});
-
-  /* skills */
-  var GROUPS=[
-    ['Mobile',['React Native','Expo & EAS','iOS & Android releases']],
-    ['Front end',['React','Next.js','TypeScript','JavaScript','Redux','styled-components','HTML/CSS','PWA','Angular']],
-    ['Back end & data',['Node.js','NestJS','Express','tRPC','REST APIs','PostgreSQL','MySQL','MariaDB','MongoDB','Redis','Firebase','SQL','Java','.NET']],
-    ['AWS & infra',['ECS Fargate','SQS','S3','RDS','Lambda','CloudWatch','Secrets Manager','Amplify','MediaConvert','Transcribe','Terraform','GCP','ffmpeg']],
-    ['AI',['AI-assisted development','Claude Code','GitHub Copilot','Claude API','Amazon Bedrock','OpenAI API','LLM features','Prompt engineering']],
-    ['Practice',['Team leadership','Mentoring','Architecture','Code review','Coding standards','Jest','ESLint','UX','Third-party APIs','QA testing','Git','Jira']],
-    ['Also',['Python','Swift']]
-  ];
-  var gh='';
-  GROUPS.forEach(function(g){
-    gh+='<div class="grp"><h3>'+g[0]+'</h3><div class="row">'+g[1].map(function(s){
-      var n=ROLES.filter(function(r){return r.tags.indexOf(s)>=0}).length;
-      if(!n)return '<span class="sk static">'+s+'</span>';
-      return '<button type="button" class="sk" data-skill="'+s+'" aria-pressed="false">'+s+'<sup>'+n+'</sup></button>';
-    }).join('')+'</div></div>';
-  });
-  $('#groups').innerHTML=gh;
-  $('#groups').addEventListener('click',function(e){var b=e.target.closest('.sk[data-skill]');if(b)setSkill(b.dataset.skill)});
-
-  renderDetail();paint();
-
-  /* ---------- years stat ---------- */
-  var yrs=Math.floor((nowM-ym('2015-04'))/12);
-  var ye=$('#yrs');ye.textContent=yrs+'+';ye.dataset.n=yrs;
-  var ld=Math.floor((nowM-ym('2022-06'))/12),le=$('#lead');le.textContent=ld+'+';le.dataset.n=ld;
-  $('#stamp').textContent='Updated '+MN[NOW.getMonth()]+' '+NOW.getFullYear();
-
-  /* ---------- toast + copy ---------- */
-  var toast=$('#toast'),tt;
-  function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},1800)}
-  function selectText(id){var el=document.getElementById(id);if(!el)return;var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
-  document.addEventListener('click',function(e){
-    var b=e.target.closest('[data-copy]');if(!b)return;
-    var txt=b.dataset.copy,what=b.dataset.what||'Text';
-    var p;try{p=navigator.clipboard.writeText(txt)}catch(err){p=Promise.reject(err)}
-    p.then(function(){say(what+' copied')},function(){if(b.dataset.target){selectText(b.dataset.target);say('Selected. Press Ctrl+C or copy to finish.')}else say(txt)});
-  });
-
-  /* ---------- theme ---------- */
-  var root=document.documentElement;
-  function isDark(){var a=root.getAttribute('data-theme');if(a)return a==='dark';return !matchMedia('(prefers-color-scheme: light)').matches}
-  $('#theme').addEventListener('click',function(){root.setAttribute('data-theme',isDark()?'light':'dark');readColors()});
-  matchMedia('(prefers-color-scheme: light)').addEventListener('change',function(){readColors()});
-
-  /* ---------- sky ---------- */
-  var cv=$('#sky'),cx=cv.getContext('2d'),W=0,H=0,DPR=1,stars=[],shoot=null,col={star:'#fff',acc:'#f3a65a',a:.8},mx=0,my=0,tx=0,ty=0,nextShoot=3000;
-  function readColors(){var cs=getComputedStyle(root);col.star=cs.getPropertyValue('--star').trim()||'#fff';col.acc=cs.getPropertyValue('--accent').trim()||'#f3a65a';col.a=parseFloat(cs.getPropertyValue('--sky-a'))||.8;if(reduce)draw(0)}
-  function resize(){
-    DPR=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
-    cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);
-    var n=Math.min(220,Math.floor(W*H/9000));stars=[];
-    for(var i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.3,z:Math.random()*.9+.1,sp:Math.random()*1.6+.4,ph:Math.random()*6.28});
-    if(reduce)draw(0);
-  }
-  function draw(t){
-    cx.clearRect(0,0,W,H);cx.fillStyle=col.star;
-    var sy=(window.scrollY||0);
-    for(var i=0;i<stars.length;i++){
-      var s=stars[i],tw=reduce?.8:.5+.5*Math.sin(t*.001*s.sp+s.ph);
-      var x=s.x+mx*s.z*26,y=((s.y-sy*s.z*.18+mx*0)%H+H)%H+my*s.z*18;
-      cx.globalAlpha=col.a*(.3+.7*tw);cx.beginPath();cx.arc(x,y,s.r,0,6.283);cx.fill();
-    }
-    if(!reduce){
-      if(!shoot&&t>nextShoot){shoot={x:Math.random()*W*.8,y:Math.random()*H*.35,vx:7+Math.random()*4,vy:3+Math.random()*2,life:0};}
-      if(shoot){
-        shoot.x+=shoot.vx;shoot.y+=shoot.vy;shoot.life++;
-        cx.strokeStyle=col.acc;cx.lineWidth=1.6;
-        for(var k=0;k<14;k++){cx.globalAlpha=col.a*(1-k/14)*Math.max(0,1-shoot.life/70);cx.beginPath();cx.moveTo(shoot.x-shoot.vx*k*1.6,shoot.y-shoot.vy*k*1.6);cx.lineTo(shoot.x-shoot.vx*(k+1)*1.6,shoot.y-shoot.vy*(k+1)*1.6);cx.stroke()}
-        if(shoot.life>70||shoot.x>W+80||shoot.y>H+80){shoot=null;nextShoot=t+5000+Math.random()*6000}
-      }
-    }
-    cx.globalAlpha=1;
-  }
-  function loop(t){mx+=(tx-mx)*.05;my+=(ty-my)*.05;draw(t);requestAnimationFrame(loop)}
-  addEventListener('resize',resize);
-  readColors();resize();
-  if(!reduce){requestAnimationFrame(loop);addEventListener('pointermove',function(e){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5},{passive:true})}
-
-  /* ---------- hero interactions ---------- */
-  var hero=$('#hero');
-  hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
-  var nm=$('#name'),letters=$$('i',nm);
-  if(!reduce){
-    nm.addEventListener('pointermove',function(e){letters.forEach(function(l){var r=l.getBoundingClientRect();var dd=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));l.style.setProperty('--w',Math.round(Math.max(260,820-dd*3.2)))})});
-    nm.addEventListener('pointerleave',function(){letters.forEach(function(l){l.style.removeProperty('--w')})});
-  }
-
-  /* typewriter */
-  var words=['React','Next.js','TypeScript','React Native','Node.js','NestJS','AWS','AI tooling'],wi=0,ci=words[0].length,del=true,te=$('#typed');
-  function type(){
-    var w=words[wi];
-    if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%words.length;ci=0}}
-    else{ci++;if(ci>=words[wi].length){del=true;te.textContent=words[wi];return setTimeout(type,1700)}}
-    te.textContent=words[wi].slice(0,ci)||' ';
-    setTimeout(type,del?45:85);
-  }
-  if(!reduce)setTimeout(type,1800);
-
-  /* ---------- scroll: progress, reveal, counters, nav ---------- */
-  var prog=$('#prog'),tick=false;
-  function onScroll(){if(tick)return;tick=true;requestAnimationFrame(function(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(m>0?Math.min(1,scrollY/m):0)+')';tick=false})}
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
-
-  if(!reduce&&'IntersectionObserver' in window){
-    var rv=$$('[data-rv]');
-    rv.forEach(function(el){if(el.getBoundingClientRect().top>innerHeight*.9)el.classList.add('pre')});
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{threshold:.1});
-    rv.forEach(function(el){io.observe(el)});
-
-    var counted=false,so=new IntersectionObserver(function(es){
-      if(counted||!es[0].isIntersecting)return;counted=true;
-      $$('[data-n]').forEach(function(el){
-        var to=+el.dataset.n,st=performance.now();
-        (function step(now){var p=Math.min(1,(now-st)/1100),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(step);else el.textContent=to+(el.dataset.suf||'')})(st);
-      });
-    },{threshold:.6});
-    so.observe($('#stats'));
-
-    var links=$$('.links a'),secs=['open','experience','skills','projects','beyond','contact'].map(function(i){return document.getElementById(i)});
-    var no=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('cur',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-45% 0px -50% 0px'});
-    secs.forEach(function(s){if(s)no.observe(s)});
-  }
-
-  /* ---------- card tilt ---------- */
-  if(!reduce){
-    $$('.card').forEach(function(c){
-      c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(600px) rotateX('+(-y*8).toFixed(2)+'deg) rotateY('+(x*10).toFixed(2)+'deg) translateY(-3px)'});
-      c.addEventListener('pointerleave',function(){c.style.transform=''});
-    });
-  }
-})();
-</script>
+    </footer>
+    <script>
+        document.querySelectorAll('.company-btn[data-target]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var panel = document.querySelector(btn.getAttribute('data-target'));
+                if (!panel) return;
+                var open = panel.classList.toggle('show');
+                btn.setAttribute('aria-expanded', String(open));
+            });
+        });
+    </script>
 </body>
 </html>

@@ -245,10 +245,13 @@ footer{padding-block:30px 56px;text-align:center;color:var(--muted);font-size:.8
 }
 
 /* style switcher */
-.styleswitch{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;border:1.5px solid var(--fg);background:var(--bg)}
-.styleswitch a{font:700 .7rem var(--gothic);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:9px 12px;color:var(--fg)}
+.styleswitch{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:stretch;border:2px solid var(--fg);background:var(--bg);box-shadow:5px 5px 0 var(--fg);animation:ssnudge 2.4s ease 1.2s 2}
+.styleswitch .ssl{display:flex;align-items:center;padding:0 12px;font:700 .66rem var(--gothic);letter-spacing:.18em;text-transform:uppercase;border-right:1px solid var(--fg)}
+.styleswitch a{display:flex;align-items:center;font:700 .76rem var(--gothic);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:12px 14px;color:var(--fg);transition:background .15s,color .15s}
 .styleswitch a:hover{background:var(--soft)}
 .styleswitch a[aria-current="page"]{background:var(--fg);color:var(--bg)}
+@keyframes ssnudge{0%,100%{transform:none}50%{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--fg)}}
+@media(max-width:480px){.styleswitch .ssl{display:none}.styleswitch a{padding:12px 11px;font-size:.7rem}}
 </style>
 
 <header class="bar">
@@ -428,8 +431,7 @@ footer{padding-block:30px 56px;text-align:center;color:var(--muted);font-size:.8
   </div>
 </main>
 <footer><div class="wrap">Don Sumayan · Cebu, Philippines · Drawn in two inks</div></footer>
-<nav class="styleswitch" aria-label="Choose a style"><a href="index.html" data-style="starfield">Starfield</a><a href="manga.html" data-style="manga" aria-current="page">Manga</a></nav>
-<script>(function(){var cur='manga';try{localStorage.setItem("resume-style",cur)}catch(e){}document.querySelectorAll(".styleswitch a").forEach(function(l){l.addEventListener("click",function(){try{localStorage.setItem("resume-style",l.dataset.style)}catch(e){}})})})();</script>
+<nav class="styleswitch" aria-label="Choose a style"><span class="ssl">Style</span><a href="index.html">Classic</a><a href="starfield.html">Starfield</a><a href="manga.html" aria-current="page">Manga</a></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
