@@ -1,0 +1,51 @@
+/* Style-to-style transitions (shared by classic, starfield and manga).
+   Chrome/Edge/Safari: native cross-document View Transitions.
+   Others: style-switch.js plays a scripted version of the same glitch. */
+@view-transition { navigation: auto; }
+
+/* pieces that exist on every style morph from one look into the next */
+.styleswitch{ view-transition-name: styleswitch; }
+.dlfix{ view-transition-name: dock-dl; }
+.printfix{ view-transition-name: dock-print; }
+.themefix, .theme-toggle{ view-transition-name: dock-theme; }
+.topnav .brand, .nav .brand, .bar .brand{ view-transition-name: brand; }
+
+::view-transition-group(*){ animation-duration: .62s; animation-timing-function: cubic-bezier(.7,0,.2,1); }
+::view-transition-old(root){ animation: ss-glitch-out .42s steps(1,end) both; }
+::view-transition-new(root){ animation: ss-glitch-in .7s cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes ss-glitch-out{
+  0%   { clip-path: inset(0); transform: none; filter: none; opacity: 1; }
+  12%  { transform: translateX(1.5%); filter: contrast(1.4); }
+  24%  { clip-path: inset(0 0 22% 0); transform: translateX(-3%) skewX(6deg); filter: invert(1); }
+  36%  { clip-path: inset(30% 0 8% 0); transform: translateX(4%); filter: none; }
+  50%  { clip-path: inset(10% 0 52% 0); transform: translateX(-5%) skewX(-10deg); filter: invert(1); }
+  64%  { clip-path: inset(46% 0 30% 0); transform: translateX(6%); filter: contrast(2); opacity: .8; }
+  80%  { clip-path: inset(49% 0 49% 0); transform: translateX(0) scaleX(1.1); filter: invert(1); opacity: .6; }
+  100% { clip-path: inset(50% 0 50% 0); opacity: 0; }
+}
+@keyframes ss-glitch-in{
+  0%   { clip-path: inset(49% 0 49% 0); transform: scaleX(1.2); filter: invert(1) contrast(1.6); }
+  14%  { clip-path: inset(38% 0 44% 0); transform: translateX(-5%) skewX(12deg); filter: invert(1); }
+  26%  { clip-path: inset(8% 0 62% 0);  transform: translateX(4%); filter: none; }
+  38%  { clip-path: inset(55% 0 6% 0);  transform: translateX(-3%) skewX(-6deg); filter: contrast(1.5); }
+  50%  { clip-path: inset(0 0 30% 0);   transform: translateX(2%); filter: invert(1); }
+  62%  { clip-path: inset(18% 0 0 0);   transform: translateX(-1.2%) skewX(3deg); filter: none; }
+  76%  { clip-path: inset(0);           transform: translateX(.6%); }
+  88%  { transform: translateX(-.3%); }
+  100% { clip-path: inset(0); transform: none; filter: none; }
+}
+
+/* scripted fallback (browsers without cross-document view transitions) */
+html.ss-leaving body{ animation: ss-glitch-out .38s steps(1,end) both; }
+html.ss-entering body{ animation: ss-glitch-in .7s cubic-bezier(.2,.8,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce){
+  ::view-transition-group(*), ::view-transition-old(root), ::view-transition-new(root){ animation-duration: .2s; animation-timing-function: ease; }
+  ::view-transition-old(root){ animation-name: ss-fade-out; }
+  ::view-transition-new(root){ animation-name: ss-fade-in; }
+  html.ss-leaving body, html.ss-entering body{ animation: none; }
+}
+@keyframes ss-fade-out{ to{ opacity: 0; } }
+@keyframes ss-fade-in{ from{ opacity: 0; } }
+@media print{ html.ss-leaving body, html.ss-entering body{ animation: none !important; } }
