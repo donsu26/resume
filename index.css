@@ -138,13 +138,6 @@ html::-webkit-scrollbar-thumb {
 
 
 /* style switcher (bottom-left, same spot as the other styles) */
-.styleswitch{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:1030;display:flex;align-items:stretch;border:1px solid #587AA3;border-radius:4px;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.35);overflow:hidden;animation:ssnudge 2.4s ease 1.2s 2}
-.styleswitch .ssl{display:flex;align-items:center;padding:0 12px;font:500 .68rem 'Raleway',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#616161;border-right:1px solid #ddd}
-.styleswitch a{display:flex;align-items:center;font:700 .78rem 'Raleway',sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:12px 14px;color:#1e2a3d;transition:background .15s,color .15s}
-.styleswitch a:hover{background:#e6edf5;color:#1e2a3d;text-decoration:none}
-.styleswitch a[aria-current="page"]{cursor:default;background:#587AA3;color:#fff}
-@keyframes ssnudge{0%,100%{box-shadow:0 8px 28px rgba(0,0,0,.35)}50%{box-shadow:0 0 0 6px rgba(88,122,163,.35),0 8px 28px rgba(0,0,0,.35)}}
-@media(max-width:480px){.styleswitch .ssl{display:none}.styleswitch a{padding:12px 11px;font-size:.72rem}}
 @media print{.styleswitch{display:none}}
 
 /* palette: Midnight Indigo / Vanilla (shared with starfield + manga) */
@@ -175,11 +168,6 @@ footer a{ color:var(--fg); }
 .cutout{ background:var(--fg); color:var(--bg); }
 hr, .border, .border-top, .border-bottom{ border-color:var(--line) !important; }
 html::-webkit-scrollbar-thumb{ background-color:var(--line); }
-.styleswitch{ border-color:var(--fg); background:var(--bg); }
-.styleswitch .ssl{ color:var(--muted); border-right-color:var(--line); }
-.styleswitch a{ color:var(--fg); text-decoration:none; }
-.styleswitch a:hover{ background:var(--surface); color:var(--fg); opacity:1; }
-.styleswitch a[aria-current="page"]{ background:var(--fg); color:var(--bg); }
 
 /* subtle "click me" hint on experience headers */
 .company-btn{ cursor:pointer; text-align:left; }
