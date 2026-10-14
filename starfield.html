@@ -239,6 +239,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 .dlfix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg));color:var(--fg);opacity:1;text-decoration:none}
 @media(max-width:480px){.dlfix .dllbl{display:none}.dlfix{padding:0;width:44px;justify-content:center}}
 @media print{.dlfix{display:none}}
+html,body{max-width:100%;overflow-x:hidden}
 .printfix{position:fixed;right:68px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);cursor:pointer}
 .printfix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg))}
 @media print{.printfix{display:none}}
@@ -282,6 +283,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <div class="cta">
           <button class="btn pri" type="button" data-copy="don.sumayan@gmail.com" data-what="Email">Copy email</button>
           <a class="btn" href="https://www.linkedin.com/in/donraedelsumayan" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/donsu26" target="_blank" rel="noopener">GitHub</a>
           <a class="btn" href="#experience">See the career map</a>
         </div>
       </div>
@@ -420,6 +422,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <dl class="contact" data-rv>
         <div class="crow"><dt>Email</dt><dd id="v-email">don.sumayan@gmail.com</dd><button class="btn" type="button" data-copy="don.sumayan@gmail.com" data-what="Email" data-target="v-email">Copy</button></div>
         <div class="crow"><dt>LinkedIn</dt><dd id="v-li"><a href="https://www.linkedin.com/in/donraedelsumayan" target="_blank" rel="noopener">linkedin.com/in/donraedelsumayan</a></dd><button class="btn" type="button" data-copy="https://www.linkedin.com/in/donraedelsumayan" data-what="Link" data-target="v-li">Copy</button></div>
+        <div class="crow"><dt>GitHub</dt><dd id="v-gh"><a href="https://github.com/donsu26" target="_blank" rel="noopener">github.com/donsu26</a></dd><button class="btn" type="button" data-copy="https://github.com/donsu26" data-what="Link" data-target="v-gh">Copy</button></div>
       </dl>
     </div>
   </section>

@@ -44,6 +44,8 @@
     } catch (e) {}
   }
 
+  var canHover = window.matchMedia && matchMedia('(hover: hover)').matches;
+
   // shrink the switcher after a moment; hovering (or a first tap on touch screens) restores it
   var nav = null, miniTimer = null;
   function shrinkLater(ms) {
@@ -54,16 +56,46 @@
   document.addEventListener('DOMContentLoaded', function () {
     nav = document.querySelector('.styleswitch');
     if (!nav) return;
+    setupSwipe(nav);
+    if (!canHover || innerWidth <= 640) return;  // phones / touch: keep it static
     shrinkLater(3500);
     nav.addEventListener('mouseenter', function () { clearTimeout(miniTimer); });
     nav.addEventListener('mouseleave', function () { grow(); shrinkLater(2000); });
     nav.addEventListener('focusin', function () { clearTimeout(miniTimer); grow(); });
     nav.addEventListener('focusout', function () { shrinkLater(2000); });
   });
-  var canHover = window.matchMedia && matchMedia('(hover: hover)').matches;
+
+  // swipe left / right on the switcher to move to the next / previous style
+  var swiped = false;
+  function go(a) {
+    save(a.querySelector('.win') || a);
+    if (native || reduce) { location.href = a.href; return; }
+    root.classList.add('ss-leaving');
+    setTimeout(function () { location.href = a.href; }, 360);
+  }
+  function setupSwipe(nav) {
+    var sx = 0, sy = 0, tracking = false;
+    nav.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) return;
+      tracking = true; swiped = false; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, { passive: true });
+    nav.addEventListener('touchend', function (e) {
+      if (!tracking) return; tracking = false;
+      var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      var items = [].slice.call(nav.querySelectorAll('.sw'));
+      var cur = items.findIndex(function (x) { return x.hasAttribute('aria-current'); });
+      if (cur < 0) return;
+      var next = items[(cur + (dx < 0 ? 1 : -1) + items.length) % items.length];
+      if (!next || !next.getAttribute('href')) return;
+      swiped = true; setTimeout(function () { swiped = false; }, 600);
+      go(next);
+    }, { passive: true });
+  }
 
   document.addEventListener('click', function (e) {
     var inNav = e.target.closest && e.target.closest('.styleswitch');
+    if (inNav && swiped) { e.preventDefault(); return; }
     if (inNav && !canHover && inNav.classList.contains('ss-mini')) {
       e.preventDefault(); grow(); shrinkLater(4000); return;
     }
