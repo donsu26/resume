@@ -229,6 +229,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 }
 
 /* style switcher */
+.themefix{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);cursor:pointer}
+.themefix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg));color:var(--fg)}
+@media print{.themefix{display:none}}
 .styleswitch{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:stretch;border:1px solid var(--accent);border-radius:4px;background:var(--bg);box-shadow:0 8px 28px rgba(0,0,0,.35);overflow:hidden;animation:ssnudge 2.4s ease 1.2s 2}
 .styleswitch .ssl{display:flex;align-items:center;padding:0 12px;font:500 .68rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
 .styleswitch a{display:flex;align-items:center;font:600 .78rem var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:12px 14px;color:var(--fg);transition:background .15s,color .15s}
@@ -251,9 +254,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <a href="#beyond">Beyond code</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="theme" id="theme" type="button" aria-label="Switch colour theme" title="Switch colour theme">
-      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 2.5a7.5 7.5 0 0 1 0 15z" fill="currentColor"/></svg>
-    </button>
   </div>
   <div class="prog" id="prog"></div>
 </header>
@@ -421,6 +421,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <footer><div class="wrap"><span>Don Sumayan · Cebu, Philippines</span><span id="stamp"></span></div></footer>
 <nav class="styleswitch" aria-label="Choose a style"><span class="ssl">Style</span><a href="index.html?style=classic">Classic</a><a aria-current="page" title="You are viewing this style">Starfield</a><a href="manga.html">Manga</a></nav>
+<button class="themefix" id="theme" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 2.5a7.5 7.5 0 0 1 0 15z" fill="currentColor"/></svg>
+    </button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>

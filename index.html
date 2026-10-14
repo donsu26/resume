@@ -14,7 +14,20 @@
         (function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     </script>
 </head>
-<body class="d-flex flex-column align-items-center">
+<body class="d-flex flex-column align-items-center" id="top">
+    <header class="topnav">
+        <div class="topnav-wrap">
+            <a class="brand" href="#top">Don Sumayan</a>
+            <nav class="links" aria-label="Sections">
+                <a href="#summary">Summary</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#project">Project</a>
+                <a href="#education">Education</a>
+            </nav>
+        </div>
+    </header>
+    
     <nav class="styleswitch" aria-label="Choose a style"><span class="ssl">Style</span><a aria-current="page" title="You are viewing this style">Classic</a><a href="starfield.html">Starfield</a><a href="manga.html">Manga</a></nav>
 
     <div class="custom-container">
@@ -37,7 +50,7 @@
             <!-- summary -->
             <div class="row mb-3">
                 <div class="col-2 text-right">
-                    <h6 class="headers font-weight-bold">summary</h6>
+                    <h6 class="headers font-weight-bold" id="summary">summary</h6>
                 </div>
                 <div class="col">
                     <div class="row">
@@ -51,7 +64,7 @@
             <!-- skills -->
             <div class="row mb-4">
                 <div class="col-2 text-right">
-                    <h6 class="headers font-weight-bold">skills</h6>
+                    <h6 class="headers font-weight-bold" id="skills">skills</h6>
                 </div>
 
                 <div class="col">
@@ -79,7 +92,7 @@
             <!-- experiences -->
             <div class="row">
                 <div class="col-2 text-right">
-                    <h6 class="headers font-weight-bold">experience</h6>
+                    <h6 class="headers font-weight-bold" id="experience">experience</h6>
                 </div>
                 <div class="col">
                     <!-- GIG -->
@@ -231,7 +244,7 @@
             <!-- project -->
             <div class="row mb-3">
                 <div class="col-2 text-right">
-                    <h6 class="headers font-weight-bold">project</h6>
+                    <h6 class="headers font-weight-bold" id="project">project</h6>
                 </div>
                 <div class="col">
                     <div class="row">
@@ -267,7 +280,7 @@
             <!-- education -->
             <div class="row mb-3">
                 <div class="col-2 text-right">
-                    <h6 class="headers font-weight-bold">education</h6>
+                    <h6 class="headers font-weight-bold" id="education">education</h6>
                 </div>
 
                 <div class="col">
