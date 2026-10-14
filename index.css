@@ -239,3 +239,10 @@ h6[id]{ scroll-margin-top:72px; }
 .kpi{ flex:1 1 150px; border:1px solid var(--line); border-radius:4px; padding:10px 12px; background:var(--surface); }
 .kpi strong{ display:block; font-size:26px; line-height:1.1; color:var(--fg); }
 .kpi span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
+
+/* download button, left of theme toggle */
+.dlfix{position:fixed;right:68px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:1030;height:44px;padding:0 14px;display:flex;align-items:center;gap:8px;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);text-decoration:none;font:700 .74rem 'Raleway',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.dlfix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg));color:var(--fg);opacity:1;text-decoration:none}
+@media(max-width:480px){.dlfix .dllbl{display:none}.dlfix{padding:0;width:44px;justify-content:center}}
+@media print{.dlfix{display:none}}
+.dlfix{ box-sizing:border-box; }

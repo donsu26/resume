@@ -229,6 +229,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 }
 
 /* style switcher */
+.dlfix{position:fixed;right:68px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;height:44px;padding:0 14px;display:flex;align-items:center;gap:8px;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);text-decoration:none;font:600 .74rem var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.dlfix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg));color:var(--fg);opacity:1;text-decoration:none}
+@media(max-width:480px){.dlfix .dllbl{display:none}.dlfix{padding:0;width:44px;justify-content:center}}
+@media print{.dlfix{display:none}}
 .themefix{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);cursor:pointer}
 .themefix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg));color:var(--fg)}
 @media print{.themefix{display:none}}
@@ -421,6 +425,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <footer><div class="wrap"><span>Don Sumayan · Cebu, Philippines</span><span id="stamp"></span></div></footer>
 <nav class="styleswitch" aria-label="Choose a style"><span class="ssl">Style</span><a href="index.html?style=classic">Classic</a><a aria-current="page" title="You are viewing this style">Starfield</a><a href="manga.html">Manga</a></nav>
+<a class="dlfix" href="https://drive.google.com/uc?export=download&id=189IWBSMOQFQSBQXA4x35Bzu1KxwgBBkJ" target="_blank" rel="noopener" title="Download my resume (PDF)" aria-label="Download my resume as a PDF"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 9 10 13.5 14.5 9M4 17h12"/></svg><span class="dllbl">Resume PDF</span></a>
 <button class="themefix" id="theme" type="button" aria-label="Switch colour theme" title="Switch colour theme">
       <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 2.5a7.5 7.5 0 0 1 0 15z" fill="currentColor"/></svg>
     </button>
