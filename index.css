@@ -254,7 +254,7 @@ h6[id]{ scroll-margin-top:72px; }
     .custom-container > .row:first-of-type .col{ display:block !important; text-align:center !important; }
     .custom-container > .row:first-of-type .col.d-flex{ display:flex !important; flex-direction:row !important; flex-wrap:wrap; justify-content:center !important; align-items:baseline !important; gap:0 8px; }
     .first-name,.last-name{ position:static !important; font-size:21pt !important; font-weight:700; color:#1f4e8c !important; letter-spacing:.02em; line-height:1.1; }
-    .first-name{ order:1; } .last-name{ order:2; }
+    .last-name{ order:1; } .first-name{ order:2; }
     .contacts{ order:3; flex:0 0 100%; margin:2mm 0 0 !important; text-align:center !important; font-size:9pt !important; color:#333 !important; }
     .contacts span{ margin-left:0 !important; }
     .contacts span + span::before{ content:" · "; }

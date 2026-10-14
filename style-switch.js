@@ -26,13 +26,20 @@
     return true;
   }
 
+  function playFallback() {
+    if (reduce) return;
+    root.classList.add('ss-entering');
+    setTimeout(function () { root.classList.remove('ss-entering'); }, 750);
+  }
+
   if (native) {
     window.addEventListener('pagereveal', function (e) {
       var had = apply();
-      if (!had && e.viewTransition) {
-        // back/forward or other links: no window to grow from, start small in the centre
-        root.style.removeProperty('--ss-x');
-      }
+      if (!had) return;
+      // came here through the switcher: if the browser skipped its own transition
+      // (slow stylesheets, timeouts, ...) play the scripted glitch instead
+      if (!e.viewTransition) { playFallback(); return; }
+      e.viewTransition.ready.catch(playFallback);
     });
   } else if (!reduce) {
     try {
