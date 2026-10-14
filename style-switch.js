@@ -44,7 +44,29 @@
     } catch (e) {}
   }
 
+  // shrink the switcher after a moment; hovering (or a first tap on touch screens) restores it
+  var nav = null, miniTimer = null;
+  function shrinkLater(ms) {
+    clearTimeout(miniTimer);
+    miniTimer = setTimeout(function () { if (nav) nav.classList.add('ss-mini'); }, ms);
+  }
+  function grow() { if (nav) nav.classList.remove('ss-mini'); }
+  document.addEventListener('DOMContentLoaded', function () {
+    nav = document.querySelector('.styleswitch');
+    if (!nav) return;
+    shrinkLater(3500);
+    nav.addEventListener('mouseenter', function () { clearTimeout(miniTimer); });
+    nav.addEventListener('mouseleave', function () { grow(); shrinkLater(2000); });
+    nav.addEventListener('focusin', function () { clearTimeout(miniTimer); grow(); });
+    nav.addEventListener('focusout', function () { shrinkLater(2000); });
+  });
+  var canHover = window.matchMedia && matchMedia('(hover: hover)').matches;
+
   document.addEventListener('click', function (e) {
+    var inNav = e.target.closest && e.target.closest('.styleswitch');
+    if (inNav && !canHover && inNav.classList.contains('ss-mini')) {
+      e.preventDefault(); grow(); shrinkLater(4000); return;
+    }
     var a = e.target.closest && e.target.closest('.styleswitch a[href]');
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var win = a.querySelector('.win') || a;

@@ -7,18 +7,18 @@
 html .styleswitch{
   position:fixed; left:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:1040;
   display:flex; align-items:flex-end; gap:8px;
-  padding:8px 10px 6px 6px;
+  padding:8px 10px 6px;
   border:1px solid var(--fg); border-radius:6px;
   background:var(--bg); color:var(--fg);
   box-shadow:0 10px 30px rgba(0,0,0,.35);
   overflow:visible; animation:none;
+  transform-origin:0 100%;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), opacity .4s, box-shadow .4s;
 }
-html .styleswitch .ssl{
-  writing-mode:vertical-rl; transform:rotate(180deg); align-self:center;
-  padding:0; border:0; margin:0;
-  font-size:.58rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
-  color:var(--fg); opacity:.6;
-}
+/* after a moment the switcher tucks itself away; hover / focus brings it back */
+html .styleswitch.ss-mini:not(:hover):not(:focus-within){ transform:scale(.58); opacity:.8; box-shadow:0 4px 14px rgba(0,0,0,.25); }
+html .styleswitch .swl{ transition:opacity .3s; }
+html .styleswitch.ss-mini:not(:hover):not(:focus-within) .swl{ opacity:0; }
 html .styleswitch .sw{
   position:relative; display:flex; flex-direction:column; align-items:center; gap:4px;
   padding:0; margin:0; border:0; background:none; color:var(--fg);
@@ -84,7 +84,6 @@ html .styleswitch .sw[aria-current]{ cursor:default; }
 
 @media (max-width:480px){
   html .styleswitch{ gap:6px; padding:6px 8px 5px; }
-  html .styleswitch .ssl{ display:none; }
   html .styleswitch .win{ width:52px; height:33px; }
   html .styleswitch .sw{ font-size:.52rem; letter-spacing:.1em; }
   html .styleswitch .sw[href]:hover .win{ transform:translateY(-6px) scale(1.4); }
