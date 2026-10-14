@@ -192,3 +192,27 @@ html.ss-entering body{ animation: ss-glitch-in .7s cubic-bezier(.2,.8,.2,1) both
 
 /* windows only (no labels): keep the box tight and even */
 html .styleswitch .sw{ gap:0; font-size:0; line-height:0; }
+
+/* ---------- "glitch off" accessibility switch (top bar) ---------- */
+html .fxbtn{
+  display:inline-flex; align-items:center; gap:7px; flex:none;
+  height:34px; padding:0 11px; margin-left:8px;
+  border:1px solid var(--fg); border-radius:4px; background:transparent; color:var(--fg);
+  font:inherit; font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  cursor:pointer; opacity:.85; transition:background .15s, color .15s, opacity .15s;
+}
+html .fxbtn:hover{ opacity:1; background:color-mix(in srgb, var(--fg) 10%, transparent); }
+html .fxbtn:focus-visible{ outline:2px solid var(--fg); outline-offset:2px; }
+html .fxbtn .fxslash{ display:none; }
+html .fxbtn[aria-pressed="true"] .fxslash{ display:inline; }
+html .fxbtn[aria-pressed="true"]{ background:var(--fg); color:var(--bg); opacity:1; }
+@media (max-width:640px){ html .fxbtn .fxlbl{ display:none; } html .fxbtn{ width:34px; padding:0; justify-content:center; margin-left:auto; } }
+@media print{ html .fxbtn{ display:none !important; } }
+
+/* glitch off: no flicker, no flashes, page switches become a soft fade */
+html.ss-calm::view-transition-group(*){ animation-duration:.25s; animation-timing-function:ease; }
+html.ss-calm::view-transition-old(root){ animation:ss-fade-out .25s ease both; }
+html.ss-calm::view-transition-new(root){ animation:ss-fade-in .25s ease both; transform:none; clip-path:none; filter:none; }
+html.ss-calm .styleswitch .win svg, html.ss-calm .styleswitch .win::after{ animation:none !important; }
+html.ss-calm .styleswitch .win::before, html.ss-calm .styleswitch .win::after{ opacity:0 !important; }
+html.ss-calm.ss-leaving body, html.ss-calm.ss-entering body{ animation:none !important; }

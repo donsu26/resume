@@ -3,7 +3,12 @@
 (function () {
   var root = document.documentElement;
   var native = 'onpagereveal' in window;
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sysReduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // "glitch off" switch: remembered per browser; defaults to off when the system asks for reduced motion
+  var FX = 'ss-fx', calm = sysReduce;
+  try { var saved = localStorage.getItem(FX); if (saved === 'off') calm = true; else if (saved === 'on') calm = false; } catch (e) {}
+  var reduce = calm;
+  if (calm) root.classList.add('ss-calm');
   var KEY = 'ss-portal';
 
   function save(win) {
@@ -61,6 +66,22 @@
   }
   function grow() { if (nav) nav.classList.remove('ss-mini'); }
   document.addEventListener('DOMContentLoaded', function () {
+    var fx = document.getElementById('fxToggle');
+    if (fx) {
+      var paint = function () {
+        fx.setAttribute('aria-pressed', String(calm));
+        fx.querySelector('.fxlbl').textContent = calm ? 'Glitch off' : 'Glitch on';
+        fx.title = calm ? 'Turn glitch effects back on' : 'Turn glitch and flashing effects off';
+        fx.setAttribute('aria-label', calm ? 'Glitch effects are off. Turn them on' : 'Glitch effects are on. Turn them off');
+      };
+      fx.addEventListener('click', function () {
+        calm = !calm; reduce = calm;
+        root.classList.toggle('ss-calm', calm);
+        try { localStorage.setItem(FX, calm ? 'off' : 'on'); } catch (e) {}
+        paint();
+      });
+      paint();
+    }
     nav = document.querySelector('.styleswitch');
     if (!nav) return;
     setupSwipe(nav);
@@ -118,13 +139,13 @@
   window.addEventListener('pageshow', function (e) { if (e.persisted) root.classList.remove('ss-leaving'); });
 
   // every so often one of the windows flickers, like a bad signal
-  if (!reduce) {
+  {
     document.addEventListener('DOMContentLoaded', function () {
       var wins = [].slice.call(document.querySelectorAll('.styleswitch .sw[href] .win'));
       if (!wins.length) return;
       (function tick() {
         setTimeout(function () {
-          if (!document.hidden) {
+          if (!document.hidden && !calm) {
             var w = wins[Math.floor(Math.random() * wins.length)];
             w.classList.add('zap');
             setTimeout(function () { w.classList.remove('zap'); }, 560);
