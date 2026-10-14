@@ -246,3 +246,70 @@ h6[id]{ scroll-margin-top:72px; }
 @media(max-width:480px){.dlfix .dllbl{display:none}.dlfix{padding:0;width:44px;justify-content:center}}
 @media print{.dlfix{display:none}}
 .dlfix{ box-sizing:border-box; }
+
+/* ---------- print: one-page A4 CV, modelled on the PDF resume ---------- */
+@page{ size:A4; margin:12mm 14mm; }
+@media print{
+    :root{ --bg:#fff !important; --fg:#111 !important; --muted:#444 !important; --line:#c9d3e0 !important; --surface:#fff !important; color-scheme:light !important; }
+    html,body{ background:#fff !important; color:#111 !important; min-width:0 !important; width:auto !important; height:auto !important; font-size:9.5pt; line-height:1.3; display:block !important; }
+    .topnav,.styleswitch,.theme-toggle,.dlfix,footer,.ako-nawng-container,.contacts a[href^="https://github"]{ display:none !important; }
+    .contacts span:has(a[href^="https://github"]){ display:none !important; }
+    a,a:visited{ color:#111 !important; text-decoration:none !important; }
+    a[href]::after{ content:none !important; }
+    .custom-container{ width:100% !important; margin:0 !important; }
+    .row{ display:block !important; margin:0 !important; }
+    [class*="col"]{ display:block !important; width:100% !important; max-width:100% !important; flex:none !important; padding:0 !important; margin:0 !important; text-align:left !important; }
+    .mt-5,.mb-5,.mb-4,.mb-3,.mb-1{ margin-top:0 !important; margin-bottom:0 !important; }
+
+    /* name + contacts, centred like the PDF */
+    .row:first-child, .custom-container > .row:first-of-type{ margin-bottom:4mm !important; }
+    .custom-container > .row:first-of-type .col{ display:block !important; text-align:center !important; }
+    .custom-container > .row:first-of-type .col.d-flex{ display:flex !important; flex-direction:row !important; flex-wrap:wrap; justify-content:center !important; align-items:baseline !important; gap:0 8px; }
+    .first-name,.last-name{ position:static !important; font-size:21pt !important; font-weight:700; color:#1f4e8c !important; letter-spacing:.02em; line-height:1.1; }
+    .first-name{ order:1; } .last-name{ order:2; }
+    .contacts{ order:3; flex:0 0 100%; margin:2mm 0 0 !important; text-align:center !important; font-size:9pt !important; color:#333 !important; }
+    .contacts span{ margin-left:0 !important; }
+    .contacts span + span::before{ content:" · "; }
+
+    /* section headings: blue caps with a rule */
+    h6, h6.headers{ font-size:9.5pt !important; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#1f4e8c !important; opacity:1 !important; border-bottom:1.2px solid #1f4e8c; padding-bottom:1px; margin:3.5mm 0 1.5mm !important; text-align:left !important; }
+    .skills{ font-size:9pt !important; font-weight:400 !important; text-align:left !important; }
+    .text-center,.text-right{ text-align:left !important; }
+    .text-secondary{ color:#444 !important; font-size:9pt !important; }
+    .skills.mb-3{ margin-bottom:0 !important; }
+
+    /* experience: every role open, role line like the PDF */
+    .collapse{ display:block !important; height:auto !important; visibility:visible !important; }
+    .headers.row{ margin-top:2.2mm !important; }
+    .company-btn{ display:block !important; width:100% !important; border:0 !important; background:none !important; padding:0 !important; text-align:left !important; color:#111 !important; font-size:9.5pt; }
+    .company-btn::after{ content:none !important; }
+    .company-btn span{ padding:0 !important; }
+    .company-btn .company{ border:0 !important; font-weight:700; }
+    .company-btn .position{ font-weight:700; color:#111 !important; }
+    .company-btn .stay-duration{ float:right; font-weight:400; font-size:9pt; }
+    .company-btn .position::before{ content:" · "; font-weight:400; }
+    .company-btn{ font-size:0 !important; }
+    .company-btn > span{ font-size:9.5pt; }
+    .role-meta{ font-size:8.5pt !important; font-style:italic; color:#444 !important; margin:0 !important; }
+    .company-description{ font-size:9pt !important; margin:0 0 1mm !important; }
+    .company-points{ font-size:9pt !important; margin:0 0 1mm !important; padding-left:5mm !important; }
+    .company-points li{ margin:0 0 .5mm !important; }
+    .kpis{ display:flex !important; gap:4mm; margin:1mm 0 1mm !important; }
+    .kpi{ border:0 !important; background:none !important; padding:0 !important; flex:0 1 auto !important; font-size:8.5pt; }
+    .kpi strong{ display:inline !important; font-size:9pt !important; }
+    .kpi span{ display:inline !important; font-size:8.5pt !important; margin:0 !important; }
+    .text-secondary,#project,#achievements,#languages{ display:none !important; }
+    .row:has(> .col-2 > #project),.row:has(> .col-2 > #achievements),.row:has(> .col-2 > #languages){ display:none !important; }
+    .company-btn .position::before{ content:"\00a0\00b7\00a0"; }
+    .company-btn{ line-height:1.25 !important; }
+    .company-btn .stay-duration{ line-height:1.25; }
+    .kpis{ flex-wrap:wrap; }
+    .kpi strong{ margin-right:1mm; }
+    html,body{ font-size:8.8pt !important; }
+    .company-description,.company-points,.skills,.role-meta{ font-size:8.6pt !important; }
+    .headers.row{ margin-top:1.6mm !important; }
+    h6, h6.headers{ margin-top:3mm !important; }
+    .company-points li, .kpis, .company-description{ break-inside:avoid; }
+    .headers.row{ break-after:avoid; }
+    .first-name,.last-name{ text-transform:uppercase !important; }
+}
