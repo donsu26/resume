@@ -13,8 +13,10 @@
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link rel="stylesheet" href="style-switch.css">
     <script src="style-switch.js"></script>
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="files/icons/classic.svg" type="image/svg+xml">
+    <link rel="icon" href="files/icons/classic-32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="files/icons/classic-180.png">
 <script>
         (function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
     </script>
@@ -30,7 +32,6 @@
                 <a href="#project">Project</a>
                 <a href="#education">Education</a>
             </nav>
-    <button class="fxbtn" id="fxToggle" type="button" aria-pressed="false" title="Turn glitch and flashing effects off"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M2 6h6M11 6h7M2 10h3M8 10h10M2 14h9M14 14h4"/><path class="fxslash" d="M3 3l14 14"/></svg><span class="fxlbl">Glitch on</span></button>
         </div>
     </header>
     
@@ -375,6 +376,7 @@
     </script>
     <a class="dlfix" href="files/Don_Sumayan_Resume.pdf" download="Don_Sumayan_Resume.pdf" title="Download my resume (PDF)" aria-label="Download my resume as a PDF"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 9 10 13.5 14.5 9M4 17h12"/></svg><span class="dllbl">Resume PDF</span></a>
     <button class="printfix" id="printBtn" type="button" title="Print my resume" aria-label="Print my resume"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 7V3h9v4M5.5 14.5h-2v-6h13v6h-2M5.5 12h9v5h-9z"/></svg></button>
+    <button class="fxfix" id="fxToggle" type="button" aria-pressed="false" title="Turn glitch and flashing effects off" aria-label="Glitch effects are on. Turn them off"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M2 6h6M11 6h7M2 10h3M8 10h10M2 14h9M14 14h4"/><path class="fxslash" d="M3 3l14 14"/></svg></button>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between dark and light mode" title="Switch dark / light"></button>
     <script>
         document.getElementById('printBtn').addEventListener('click', function () { window.print(); });

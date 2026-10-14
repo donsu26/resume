@@ -70,7 +70,7 @@
     if (fx) {
       var paint = function () {
         fx.setAttribute('aria-pressed', String(calm));
-        fx.querySelector('.fxlbl').textContent = calm ? 'Glitch off' : 'Glitch on';
+        var lbl = fx.querySelector('.fxlbl'); if (lbl) lbl.textContent = calm ? 'Glitch off' : 'Glitch on';
         fx.title = calm ? 'Turn glitch effects back on' : 'Turn glitch and flashing effects off';
         fx.setAttribute('aria-label', calm ? 'Glitch effects are off. Turn them on' : 'Glitch effects are on. Turn them off');
       };
