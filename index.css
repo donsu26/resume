@@ -241,7 +241,7 @@ h6[id]{ scroll-margin-top:72px; }
 .kpi span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; }
 
 /* download button, left of theme toggle */
-.dlfix{position:fixed;right:68px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:1030;height:44px;padding:0 14px;display:flex;align-items:center;gap:8px;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);text-decoration:none;font:700 .74rem 'Raleway',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.dlfix{position:fixed;right:120px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:1030;height:44px;padding:0 14px;display:flex;align-items:center;gap:8px;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);text-decoration:none;font:700 .74rem 'Raleway',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 .dlfix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg));color:var(--fg);opacity:1;text-decoration:none}
 @media(max-width:480px){.dlfix .dllbl{display:none}.dlfix{padding:0;width:44px;justify-content:center}}
 @media print{.dlfix{display:none}}
@@ -313,3 +313,8 @@ h6[id]{ scroll-margin-top:72px; }
     .headers.row{ break-after:avoid; }
     .first-name,.last-name{ text-transform:uppercase !important; }
 }
+
+.printfix{position:fixed;right:68px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:1030;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid var(--fg);border-radius:4px;background:var(--bg);color:var(--fg);box-shadow:0 8px 28px rgba(0,0,0,.35);cursor:pointer}
+.printfix:hover{background:color-mix(in srgb,var(--fg) 12%,var(--bg))}
+@media print{.printfix{display:none}}
+@media print{.printfix{display:none !important}}
