@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+<script>
+        (function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+    </script>
 </head>
 <body class="d-flex flex-column align-items-center">
     <nav class="styleswitch" aria-label="Choose a style"><span class="ssl">Style</span><a aria-current="page" title="You are viewing this style">Classic</a><a href="starfield.html">Starfield</a><a href="manga.html">Manga</a></nav>
@@ -329,6 +332,29 @@
                 btn.setAttribute('aria-expanded', String(open));
             });
         });
+    </script>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between dark and light mode" title="Switch dark / light"></button>
+    <script>
+        (function () {
+            var root = document.documentElement, btn = document.getElementById('themeToggle');
+            var mq = window.matchMedia('(prefers-color-scheme: light)');
+            function current() {
+                var t = root.getAttribute('data-theme');
+                return t || (mq.matches ? 'light' : 'dark');
+            }
+            function paint() { btn.textContent = current() === 'dark' ? '\u2600' : '\u263E'; }
+            btn.addEventListener('click', function () {
+                var next = current() === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch (e) {}
+                paint();
+            });
+            if (mq.addEventListener) mq.addEventListener('change', function () {
+                var saved = null; try { saved = localStorage.getItem('theme'); } catch (e) {}
+                if (!saved) { root.removeAttribute('data-theme'); paint(); }
+            });
+            paint();
+        })();
     </script>
 </body>
 </html>

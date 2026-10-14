@@ -157,8 +157,10 @@ html::-webkit-scrollbar-thumb {
     color-scheme:dark;
 }
 @media (prefers-color-scheme: light){
-    :root{ --bg:var(--paper); --fg:var(--ink); color-scheme:light; }
+    :root:not([data-theme="dark"]){ --bg:var(--paper); --fg:var(--ink); color-scheme:light; }
 }
+:root[data-theme="light"]{ --bg:var(--paper); --fg:var(--ink); color-scheme:light; }
+:root[data-theme="dark"]{ --bg:var(--ink); --fg:var(--paper); color-scheme:dark; }
 body{ background:var(--bg); color:var(--fg); }
 h6, .contacts, .contacts a, .text-secondary, .position, .printing{ color:var(--muted) !important; }
 h6{ color:var(--fg) !important; opacity:.85; }
@@ -198,3 +200,17 @@ html::-webkit-scrollbar-thumb{ background-color:var(--line); }
 .company-btn:hover .company{ border-bottom-color:var(--fg); }
 @keyframes hintbob{ 0%,100%{ translate:0 0 } 50%{ translate:0 3px } }
 @media (prefers-reduced-motion: reduce){ .company-btn::after{ animation:none } }
+
+/* theme toggle */
+.theme-toggle{
+    position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:1030;
+    width:44px; height:44px; padding:0;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--fg); border-radius:4px;
+    background:var(--bg); color:var(--fg);
+    box-shadow:0 8px 28px rgba(0,0,0,.35);
+    cursor:pointer; font-size:20px; line-height:1;
+}
+.theme-toggle:hover{ background:var(--surface); }
+.theme-toggle:focus-visible{ outline:2px solid var(--fg); outline-offset:2px; }
+@media print{ .theme-toggle{ display:none } }
