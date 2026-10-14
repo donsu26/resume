@@ -1,0 +1,137 @@
+html, body{
+    font-family: 'Raleway', sans-serif;
+    margin:0;
+    padding: 0;
+    height:100%;
+}
+
+h6{
+    margin-top:5px;
+    color:#587AA3;
+}
+.custom-container{
+    width:80%;
+}
+.first-name{
+    font-size: 50px;
+    position: relative;
+    top: -10px;
+    right: -20px;
+}
+.printing{
+    font-size: 11px;
+    color:#4a4a4a;
+}
+
+.last-name{
+    font-size: 29px;
+    position: relative;
+    bottom: -15px;
+    right: -1px;
+}
+
+.ako-nawng-container{
+    border: 1px solid black;
+    height: 160px;
+    width: 160px;
+    background-size: 127%;
+    border-radius: 50%;
+    background-position: -40px -29px;
+    background-image: url(files/DON.jfif);
+}
+.contacts{
+    position: static;
+    margin-top: 28px;
+    padding: 0;
+    text-align: right;
+    font-size: 14px;
+    color:#616161;
+}
+.contacts a{
+    color:#616161;
+}
+.contacts a:hover{
+    color:#587AA3;
+}
+.company-points{
+    font-size: 14px;
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+.company-points li{
+    margin-bottom: 4px;
+}
+.skills{
+    font-size: 18px;
+}
+
+.company, .stay-duration{
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+}
+.company-btn{
+    padding:0px !important;
+    border:1px solid transparent;
+    background: transparent;
+    border-radius: 4px;
+}
+.company-btn:hover{
+    border:1px solid #868e96;
+}
+.company-btn:focus{
+    outline: none;
+}
+.stay-duration{
+    font-size: 14px;
+}
+.position{
+    color: #5f666d;
+    font-weight: 100;
+}
+
+.info{
+    display: inline-block;
+    width:100px;
+}
+.download-btn{
+    color: #383838;
+    font-size: 12px;
+    padding-bottom: 20px;
+    bottom: -15px;
+    left:70%;
+    background-color: white;
+}
+
+.pdf-btn:hover{
+    color:black;
+}
+
+.links{
+    position:relative;
+    top:15px;
+}
+.cutout{
+    font-size:11px;
+    background-color: black;
+    color:#d8d8d8;
+}
+footer{
+    background-color: #ececec;
+    font-size:11px;
+    height: auto;
+    width: 100%;
+}
+footer > i{
+    font-size:13px !important;
+}
+
+
+html::-webkit-scrollbar-track {
+  background-color: transparent; }
+
+html::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent; }
+
+html::-webkit-scrollbar-thumb {
+  background-color: #CECECE; }
