@@ -249,7 +249,7 @@ footer{padding-block:30px 56px;text-align:center;color:var(--muted);font-size:.8
 .styleswitch .ssl{display:flex;align-items:center;padding:0 12px;font:700 .66rem var(--gothic);letter-spacing:.18em;text-transform:uppercase;border-right:1px solid var(--fg)}
 .styleswitch a{display:flex;align-items:center;font:700 .76rem var(--gothic);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:12px 14px;color:var(--fg);transition:background .15s,color .15s}
 .styleswitch a:hover{background:var(--soft)}
-.styleswitch a[aria-current="page"]{background:var(--fg);color:var(--bg)}
+.styleswitch a[aria-current="page"]{cursor:default;background:var(--fg);color:var(--bg)}
 @keyframes ssnudge{0%,100%{transform:none}50%{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--fg)}}
 @media(max-width:480px){.styleswitch .ssl{display:none}.styleswitch a{padding:12px 11px;font-size:.7rem}}
 </style>
@@ -431,7 +431,7 @@ footer{padding-block:30px 56px;text-align:center;color:var(--muted);font-size:.8
   </div>
 </main>
 <footer><div class="wrap">Don Sumayan · Cebu, Philippines · Drawn in two inks</div></footer>
-<nav class="styleswitch" aria-label="Choose a style"><span class="ssl">Style</span><a href="index.html">Classic</a><a href="starfield.html">Starfield</a><a href="manga.html" aria-current="page">Manga</a></nav>
+<nav class="styleswitch" aria-label="Choose a style"><span class="ssl">Style</span><a href="index.html">Classic</a><a href="starfield.html">Starfield</a><a aria-current="page" title="You are viewing this style">Manga</a></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>

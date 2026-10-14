@@ -177,3 +177,6 @@ html::-webkit-scrollbar-thumb {
     background: #587AA3;
     border-color: #587AA3;
 }
+.style-cta-links a[aria-current="page"]{
+    cursor: default;
+}
